@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'modules/document';
+
+.markdown {
+    * {
+        all: revert;
+    }
+
+    @import 'modules/content';
+}

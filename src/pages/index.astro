@@ -50,13 +50,15 @@ posts = posts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a
                     const {
                         slug,
                         package: _package,
-                        description
+                        description,
+                        date: _date
                     } = post.frontmatter
-
+                    const date = new Date(_date)
                     return (
-                    <li class="py-3">
-                        <a href={`/posts/${slug}`} class="text-black font-bold">{slug}</a>
-                        <p class="text-fluid-0">{description}</p>
+                    <li class="flex flex-col gap-1 py-3 text-fluid-0">
+                        <a href={`/posts/${slug}`} class="text-black font-bold text-fluid-1">{slug}</a>
+                        <time>{date.toDateString()}</time>
+                        <p>{description}</p>
                     </li>
                     )
                 })}

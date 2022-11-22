@@ -15,6 +15,7 @@ export default defineConfig({
     config: { applyBaseStyles: false }
   })],
   markdown: {
+    extendDefaultPlugins: true,
     shikiConfig: { theme: 'one-dark-pro' },
     remarkPlugins: [
       [defaultFrontmatterAdvanced, [

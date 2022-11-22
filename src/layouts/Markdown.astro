@@ -5,11 +5,11 @@ import { SEO } from "astro-seo";
 import Navbar from "@/components/Navbar.astro";
 import Footer from "@/components/Footer.astro";
 
-import '@/css/base.css'
+import '@/css/markdown.scss'
 
 const  {
     SEO: SEOProp,
-    font="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+    font="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
 } = Astro.props
 ---
 
@@ -25,7 +25,7 @@ const  {
 	<body>
 		<Navbar />
 		<main>
-			<slot />
+            <slot />
 		</main>
 		<Footer />
 	</body>

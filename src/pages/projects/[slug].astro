@@ -1,5 +1,5 @@
 ---
-import Base from "@/layouts/Base.astro";
+import Markdown from "@/layouts/Markdown.astro";
 
 export async function getStaticPaths() {
     const posts = await Astro.glob('../../projects/*.md')
@@ -29,7 +29,7 @@ const date = new Date(_date);
 
 ---
 
-<Base>
+<Markdown>
     <div class="my-5">
         <h1>{title}</h1>
         <div class="flex gap-3">
@@ -38,10 +38,12 @@ const date = new Date(_date);
             {demo && <a href={demo}>Demo</a>}
         </div>
     </div>
-    <Fragment set:html={post.compiledContent()}/>
+    <section class="markdown">
+        <Fragment set:html={post.compiledContent()}/>
+    </section>
     <div class="flex justify-center gap-3">
         <span>{date.toDateString()}</span>
         {source && <a href={source}>Source</a>}
         {demo && <a href={demo}>Demo</a>}
     </div>
-</Base>
+</Markdown>

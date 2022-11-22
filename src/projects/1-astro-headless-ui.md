@@ -5,9 +5,7 @@ description: 'A collection of headless components and utilities for Astro'
 package: 'astro-headless-ui'
 date: 2022-11-21
 tags:
-  -  'Astro'
-  -  'Typescript'
-  -  'Library'
-  -  'Headless'
-  -  'Slots'
+  -  'astro'
+  -  'typescript'
+  -  'library'
 ---

@@ -1,8 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
-import Navbar from "@/components/Navbar.astro";
-import Footer from "@/components/Footer.astro";
-import Tags from '@/components/Tags.astro';
+import CodeTagIcons from '@/components/CodeTagIcons.astro';
 
 let projects = await Astro.glob('../projects/*.md');
 projects = projects.filter(post => post.frontmatter.draft !== true)
@@ -34,7 +32,7 @@ posts = posts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a
                         <span class="flex flex-col xs:flex-row xs:items-center gap-1 mb-1">
                             <a href={`/projects/${slug}`} class="text-black font-bold">{_package || slug}</a>
                             <span class="flex gap-1 text-fluid-0">
-                                <Tags tags={tags} />
+                                <CodeTagIcons tags={tags} />
                             </span>
                         </span>
                         <p class="text-fluid-0">{description}</p>

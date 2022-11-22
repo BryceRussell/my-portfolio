@@ -5,6 +5,6 @@ title: 'Astro JSON Element'
 description: 'Create html elements using JS Objects'
 date: 2022-11-21
 tags:
-  -  'Astro'
-  -  'Typescript'
+  -  'astro'
+  -  'typescript'
 ---

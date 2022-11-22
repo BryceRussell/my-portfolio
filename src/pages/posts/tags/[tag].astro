@@ -1,14 +1,41 @@
 ---
 import Base from "@/layouts/Base.astro";
 
-let posts = await Astro.glob('../../posts/*.md');
-posts = posts.filter(post => post.frontmatter.draft !== true)
-posts = posts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+export async function getStaticPaths() {
+    const posts = await Astro.glob('../../../posts/*.md')
+    const tags = [...new Set(posts.map(post => post.frontmatter.tags).flat())]
+    return tags.map((tag) => {
+        return {
+            params: {
+                tag
+            },
+            props: {
+                posts: posts.filter(post => post.frontmatter.tags&&post.frontmatter.tags.includes(tag))
+            } 
+        }
+    })
+}
+
+export interface Props {
+    posts?: any[];
+}
+
+const {
+    posts=[]
+} = Astro.props
+
+const {
+    tag
+} = Astro.params
+
 ---
 
 <Base>
-    <h1 class="text-center">My Posts</h1>
-    <div class="flex flex-col gap-3">
+    <hgroup class="flex flex-col items-center">
+        <h1 class="text-center">My Posts</h1>
+        <p><strong>Tag</strong>: {tag}</p>
+    </hgroup>
+    <div class="flex flex-col gap-3 my-5">
         { posts.map((post) => {
             const {
                 slug,

@@ -5,9 +5,8 @@ description: 'A collection of Remark plugins for Astro that define defaults for 
 package: 'astro-default-frontmatter'
 date: 2022-11-21
 tags:
-  -  'Astro'
-  -  'Typescript'
-  -  'Remark'
-  -  'Markdown'
-  -  'Frontmatter'
+  -  'astro'
+  -  'typescript'
+  -  'remark'
+  -  'plugin'
 ---

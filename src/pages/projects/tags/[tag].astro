@@ -1,14 +1,41 @@
 ---
 import Base from "@/layouts/Base.astro";
 
-let projects = await Astro.glob('../../projects/*.md');
-projects = projects.filter(project => project.frontmatter.draft !== true)
-projects = projects.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+export async function getStaticPaths() {
+    const projects = await Astro.glob('../../../projects/*.md')
+    const tags = [...new Set(projects.map(project => project.frontmatter.tags).flat())]
+    return tags.map((tag) => {
+        return {
+            params: {
+                tag
+            },
+            props: {
+                projects: projects.filter(project => project.frontmatter.tags&&project.frontmatter.tags.includes(tag))
+            } 
+        }
+    })
+}
+
+export interface Props {
+    projects?: any[];
+}
+
+const {
+    projects=[]
+} = Astro.props
+
+const {
+    tag
+} = Astro.params
+
 ---
 
 <Base>
-    <h1 class="text-center">My projects</h1>
-    <div class="flex flex-col gap-3">
+    <hgroup class="flex flex-col items-center">
+        <h1 class="text-center">My Projects</h1>
+        <p><strong>Tag</strong>: {tag}</p>
+    </hgroup>
+    <div class="flex flex-col gap-3 my-5">
         { projects.map((project) => {
             const {
                 slug,

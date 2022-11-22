@@ -5,6 +5,9 @@ description: How to create a remark plugin for injecting default frontmatter int
 date: 2022/09/08
 demo: 'https://stackblitz.com/edit/github-hfgk3n'
 source: 'https://github.com/BryceRussell/astro-remark-default-frontmatter'
+tags:
+ - 'remark'
+ - 'markdown'
 ---
 
 ## Default Layout

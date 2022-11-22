@@ -2,29 +2,37 @@
 import Markdown from "@/layouts/Markdown.astro";
 
 export async function getStaticPaths() {
-    const posts = await Astro.glob('../../projects/*.md')
-    return posts.map((post) => {
+    const projects = await Astro.glob('../../projects/*.md')
+    return projects.map((project) => {
         return {
             params: {
-                slug: post.frontmatter.slug
+                slug: project.frontmatter.slug
             },
             props: {
-                post
+                project
             } 
         }
     })
 }
 
 const {
-    post
+    project
 } = Astro.props
 
 const {
     title,
-    date: _date,
+    date: _date='',
     source,
-    demo
-} = post.frontmatter
+    demo,
+    tags=[]
+} = project.frontmatter as {
+    title?: string;
+    date?: string | number | Date;
+    source?: string;
+    demo?: string;
+    tags?: string[];
+}
+
 const date = new Date(_date);
 
 ---
@@ -36,10 +44,13 @@ const date = new Date(_date);
             <span>{date.toDateString()}</span>
             {source && <a href={source}>Source</a>}
             {demo && <a href={demo}>Demo</a>}
+            {tags.map((tag) => {
+                return <span>{tag}</span>
+            })}
         </div>
     </div>
     <section class="markdown">
-        <Fragment set:html={post.compiledContent()}/>
+        <Fragment set:html={project.compiledContent()}/>
     </section>
     <div class="flex justify-center gap-3">
         <span>{date.toDateString()}</span>

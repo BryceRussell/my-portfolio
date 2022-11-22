@@ -1,0 +1,29 @@
+---
+import { Icon } from 'astro-icon'
+
+export interface Props {
+    tags: string[]; 
+}
+
+const { tags: _tags } = Astro.props
+
+const iconDict: {[tag: string]: string} = {
+    "library": "ion:library-sharp",
+    "astro": "vscode-icons:file-type-astro",
+    "typescript": "vscode-icons:file-type-typescript-official",
+    "solidjs": "logos:solidjs-icon",
+    "python": "vscode-icons:file-type-python",
+    "mongodb": "vscode-icons:folder-type-mongodb-opened",
+    "flask": "cib:flask",
+    "remark": "vscode-icons:file-type-light-remark",
+    "steam": "flat-color-icons:steam",
+    "cli": "ion:terminal-sharp",
+    "theme": "ic:baseline-palette"
+}
+
+const tags = _tags.filter((tag) => Object.keys(iconDict).includes(tag))
+---
+
+{ tags.map((tag) => {
+    return <Icon name={iconDict[tag]} size={16} />
+})}

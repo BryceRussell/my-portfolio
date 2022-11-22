@@ -21,12 +21,19 @@ const {
 
 const {
     title,
-    date: _date,
+    date: _date='',
     source,
-    demo
-} = post.frontmatter
-const date = new Date(_date);
+    demo,
+    tags=[]
+} = post.frontmatter as {
+    title?: string;
+    date?: string | number | Date;
+    source?: string;
+    demo?: string;
+    tags?: string[];
+}
 
+const date = new Date(_date);
 ---
 
 <Markdown>
@@ -36,6 +43,9 @@ const date = new Date(_date);
             <span>{date.toDateString()}</span>
             {source && <a href={source}>Source</a>}
             {demo && <a href={demo}>Demo</a>}
+            {tags.map((tag) => {
+                return <span>{tag}</span>
+            })}
         </div>
     </div>
     <section class="markdown">

@@ -1,0 +1,33 @@
+---
+import Base from "@/layouts/Base.astro";
+
+let posts = await Astro.glob('../../posts/*.md');
+posts = posts.filter(post => post.frontmatter.draft !== true)
+posts = posts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+---
+
+<Base>
+    <h1 class="text-center">My Posts</h1>
+    <div class="flex flex-col gap-3">
+        { posts.map((post) => {
+            const {
+                slug,
+                title,
+                description,
+                date: rawDate
+            } = post.frontmatter
+            const date = new Date(rawDate)
+            return (
+                <article>
+                    <div class="flex gap-3">
+                        <time>{date.toDateString()}</time>
+                        <a href={`/posts/${slug}`} class="text-black font-bold">{title}</a>
+                    </div>
+                    <p class="text-fluid-0">
+                        {description}
+                    </p>
+                </article>
+            )
+        })}
+    </div>
+</Base>

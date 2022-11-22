@@ -1,0 +1,47 @@
+---
+import Base from "@/layouts/Base.astro";
+
+export async function getStaticPaths() {
+    const posts = await Astro.glob('../../posts/*.md')
+    return posts.map((post) => {
+        return {
+            params: {
+                slug: post.frontmatter.slug
+            },
+            props: {
+                post
+            } 
+        }
+    })
+}
+
+const {
+    post
+} = Astro.props
+
+const {
+    title,
+    date: _date,
+    source,
+    demo
+} = post.frontmatter
+const date = new Date(_date);
+
+---
+
+<Base>
+    <div class="my-5">
+        <h1>{title}</h1>
+        <div class="flex gap-3">
+            <span>{date.toDateString()}</span>
+            {source && <a href={source}>Source</a>}
+            {demo && <a href={demo}>Demo</a>}
+        </div>
+    </div>
+    <Fragment set:html={post.compiledContent()}/>
+    <div class="flex justify-center gap-3">
+        <span>{date.toDateString()}</span>
+        {source && <a href={source}>Source</a>}
+        {demo && <a href={demo}>Demo</a>}
+    </div>
+</Base>

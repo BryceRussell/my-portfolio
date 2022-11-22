@@ -1,0 +1,52 @@
+---
+import { GoogleFontsOptimizer } from "astro-google-fonts-optimizer";
+import { SEO } from "astro-seo";
+
+import Navbar from "@/components/Navbar.astro";
+import Footer from "@/components/Footer.astro";
+
+import '@/css/tailwind.css'
+import '@/css/base.css'
+
+const  {
+    SEO: SEOProp={
+        title: "Bryce Russell's Website",
+        description: "Bryce Russell's web development portfolio and blog",
+        canonical: new URL(Astro.url.pathname, Astro.site),
+        openGraph: {
+            basic: {
+                title: "Bryce Russell's Web Development",
+                url: new URL(Astro.url.pathname, Astro.site),
+                image: "/opengraph.png",
+                type: "website"
+            },
+            optional: {
+                siteName: "Ryce",
+                description: "Check out my website to see my projects and blogs about web development"
+            },
+            image: {
+                alt: "website logo"
+            }
+        }
+    },
+    font="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+} = Astro.props
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+        {font && <GoogleFontsOptimizer url={font}/>}
+        <SEO {...SEOProp}/>
+        <slot name="head"/>
+	</head>
+	<body>
+		<Navbar />
+		<main>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

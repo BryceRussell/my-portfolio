@@ -1,0 +1,66 @@
+---
+import Base from "@/layouts/Base.astro";
+import Navbar from "@/components/Navbar.astro";
+import Footer from "@/components/Footer.astro";
+import Tags from '@/components/Tags.astro';
+
+let projects = await Astro.glob('../projects/*.md');
+projects = projects.filter(post => post.frontmatter.draft !== true)
+
+let posts = await Astro.glob('../posts/*.md');
+posts = posts.filter(post => post.frontmatter.draft !== true)
+posts = posts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+---
+
+<Base>
+    <hgroup class="flex flex-col w-fit my-20 mx-auto">
+        <h1 class="font-bold text-fluid-9 p-0">Bryce Russell</h1>
+        <p class="p-0 text-fluid-6">Web Developer</p>
+    </hgroup>
+    <div class="grid sm:grid-cols-2 sm:auto-cols-auto">
+        <div class="mb-20">
+            <h2 class="mb-3">Projects</h2>
+            <ul class="flex flex-col gap-3">
+                { projects.map((project) => {
+                    const {
+                        slug,
+                        package: _package,
+                        description,
+                        tags
+                    } = project.frontmatter
+
+                    return (
+                    <li>
+                        <span class="flex flex-col xs:flex-row xs:items-center gap-1 mb-1">
+                            <a href={`/projects/${slug}`} class="text-black font-bold">{_package || slug}</a>
+                            <span class="flex gap-1 text-fluid-0">
+                                <Tags tags={tags} />
+                            </span>
+                        </span>
+                        <p class="text-fluid-0">{description}</p>
+                    </li>
+                    )
+                })}
+            </ul>
+        </div>
+        <div class="sm:text-right">
+            <h2>Posts</h2>
+            <ul>
+                { posts.map((post) => {
+                    const {
+                        slug,
+                        package: _package,
+                        description
+                    } = post.frontmatter
+
+                    return (
+                    <li class="py-3">
+                        <a href={`/posts/${slug}`} class="text-black font-bold">{slug}</a>
+                        <p class="text-fluid-0">{description}</p>
+                    </li>
+                    )
+                })}
+            </ul>
+        </div>
+    </div>
+</Base>

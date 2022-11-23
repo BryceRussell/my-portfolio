@@ -7,7 +7,7 @@ export async function getStaticPaths() {
     return tags.map((tag) => {
         return {
             params: {
-                tag
+                tag: tag||[]
             },
             props: {
                 projects: projects.filter(project => project.frontmatter.tags&&project.frontmatter.tags.includes(tag))

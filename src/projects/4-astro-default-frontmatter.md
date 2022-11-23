@@ -4,6 +4,7 @@ title: 'Astro Default Frontmatter'
 description: 'A collection of Remark plugins for Astro that define defaults for markdown frontmatter'
 package: 'astro-default-frontmatter'
 date: 2022-11-21
+source: 'https://github.com/BryceRussell/astro-default-frontmatter'
 tags:
   -  'astro'
   -  'typescript'

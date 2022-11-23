@@ -1,5 +1,7 @@
 ---
+import { Icon } from 'astro-icon';
 import Markdown from "@/layouts/Markdown.astro";
+import type { Post } from '@/types';
 
 export async function getStaticPaths() {
     const posts = await Astro.glob('../../posts/*.md')
@@ -21,39 +23,28 @@ const {
 
 const {
     title,
-    date: _date='',
+    date='',
     source,
     demo,
     tags=[]
-} = post.frontmatter as {
-    title?: string;
-    date?: string | number | Date;
-    source?: string;
-    demo?: string;
-    tags?: string[];
-}
-
-const date = new Date(_date);
+} = post.frontmatter as Post
 ---
 
 <Markdown>
     <div class="my-5">
-        <h1>{title}</h1>
-        <div class="flex gap-3">
-            <span>{date.toDateString()}</span>
-            {source && <a href={source}>Source</a>}
-            {demo && <a href={demo}>Demo</a>}
-            {tags.map((tag) => {
-                return <span>{tag}</span>
-            })}
+        <h1 class="p-0">{title}</h1>
+        <div class="flex gap-3 my-3">
+            <span>{(new Date(date)).toDateString()}</span>
+            {source &&<a href={source} title="Source" class="text-black opacity-75 hover:opacity-50"><Icon name="mdi:github" size={24}/></a>}
+            {demo && <a href={demo} title="Demo" class="text-black opacity-75 hover:opacity-50"><Icon name="zondicons:computer-laptop" size={24} /></a>}
+            <ul class="flex gap-1 ml-auto">
+                {tags.map((tag) => {
+                    return <li><a href={`/posts/tags/${tag}`}>{tag}{i < tags.length - 1 && ','}</a></li>
+                })}
+            </ul>
         </div>
     </div>
     <section class="markdown">
         <Fragment set:html={post.compiledContent()}/>
     </section>
-    <div class="flex justify-center gap-3">
-        <span>{date.toDateString()}</span>
-        {source && <a href={source}>Source</a>}
-        {demo && <a href={demo}>Demo</a>}
-    </div>
 </Markdown>

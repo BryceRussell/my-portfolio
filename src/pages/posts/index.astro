@@ -1,5 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
+import type { Post } from '@/types';
 
 let posts = await Astro.glob('../../posts/*.md');
 posts = posts.filter(post => post.frontmatter.draft !== true)
@@ -8,27 +9,20 @@ posts = posts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a
 
 <Base>
     <h1 class="text-center">My Posts</h1>
-    <div class="flex flex-col gap-3">
+    <div class="flex flex-col gap-3 my-5">
         { posts.map((post) => {
             const {
                 slug,
                 title,
                 description,
-                date: _date='',
+                date='',
                 tags=[],
-            } = post.frontmatter as {
-                slug?: string;
-                title?: string;
-                description?: string;
-                date?: string|number|Date;
-                tags?: string[];
-            }
-            const date = new Date(_date)
+            } = post.frontmatter as Post
             return (
                 <article>
                     <a href={`/posts/${slug}`} class="text-black font-bold">{title}</a>
                     <div class="flex items-center gap-3 text-fluid-0">
-                        <time>{date.toDateString()}</time>
+                        <time>{(new Date(date)).toDateString()}</time>
                         {tags.map((tag) => {
                             return <a href={`/posts/tags/${tag}`}>{tag}</a>
                         })}

@@ -1,5 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
+import type { Project } from '@/types';
 
 let projects = await Astro.glob('../../projects/*.md');
 projects = projects.filter(project => project.frontmatter.draft !== true)
@@ -8,27 +9,20 @@ projects = projects.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new 
 
 <Base>
     <h1 class="text-center">My projects</h1>
-    <div class="flex flex-col gap-3">
+    <div class="flex flex-col gap-3 my-5">
         { projects.map((project) => {
             const {
                 slug,
                 title,
                 description,
-                date: _date='',
+                date='',
                 tags=[],
-            } = project.frontmatter as {
-                slug?: string;
-                title?: string;
-                description?: string;
-                date?: string|number|Date;
-                tags?: string[];
-            }
-            const date = new Date(_date)
+            } = project.frontmatter as Project
             return (
                 <article>
                     <a href={`/projects/${slug}`} class="text-black font-bold">{title}</a>
                     <div class="flex items-center gap-3 text-fluid-0">
-                        <time>{date.toDateString()}</time>
+                        <time>{(new Date(date)).toDateString()}</time>
                         {tags.map((tag) => {
                             return <a href={`/projects/tags/${tag}`}>{tag}</a>
                         })}

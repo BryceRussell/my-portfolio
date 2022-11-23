@@ -38,7 +38,7 @@ const {
             {source &&<a href={source} title="Source" class="text-black opacity-75 hover:opacity-50"><Icon name="mdi:github" size={24}/></a>}
             {demo && <a href={demo} title="Demo" class="text-black opacity-75 hover:opacity-50"><Icon name="zondicons:computer-laptop" size={24} /></a>}
             <ul class="flex gap-1 ml-auto">
-                {tags.map((tag) => {
+                {tags.map((tag, i) => {
                     return <li><a href={`/posts/tags/${tag}`}>{tag}{i < tags.length - 1 && ','}</a></li>
                 })}
             </ul>

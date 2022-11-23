@@ -3,11 +3,11 @@ import Base from "@/layouts/Base.astro";
 
 export async function getStaticPaths() {
     const posts = await Astro.glob('../../../posts/*.md')
-    const tags = [...new Set(posts.map(post => post.frontmatter.tags).flat())]
+    const tags = [...new Set(posts.map(post => post.frontmatter.tags).flat())].filter(tag => tag !== undefined)
     return tags.map((tag) => {
         return {
             params: {
-                tag: tag||[]
+                tag
             },
             props: {
                 posts: posts.filter(post => post.frontmatter.tags&&post.frontmatter.tags.includes(tag))

@@ -36,7 +36,7 @@ const {
             <h1 class="p-0">{title}</h1>
             <ul class="flex gap-1">
                 {tags.map((tag, i) => {
-                    return <li><a href={`/projects/tags/${tag}`}>{tag}{i < tags.length - 1 && ','}</a></li>
+                    return <li><a href={`/projects/tags/${tag}`}>{tag}</a>{i < tags.length - 1 && ','}</li>
                 })}
             </ul>
         </div>

@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build && npx -y pagefind --source dist",
-    "preview": "astro preview",
+    "preview": "astro build && npx -y pagefind --source dist && astro preview",
     "astro": "astro"
   },
   "dependencies": {

@@ -1,6 +1,5 @@
 ---
 import Base from "@/layouts/Base.astro";
-import { Breadcrumb } from 'astro-headless-ui';
 import type { Post } from '@/types';
 
 export async function getStaticPaths() {
@@ -45,7 +44,7 @@ const {
             } = post.frontmatter as Post
 
             return (
-                <article data-pagefind-filter="type:post">
+                <article>
                     <a href={`/posts/${slug}`} class="text-black font-bold">{title}</a>
                     <div class="flex items-center gap-3 text-fluid-0">
                         <time>{(new Date(date)).toDateString()}</time>

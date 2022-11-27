@@ -8,10 +8,12 @@
     "start": "astro dev",
     "build": "astro build && npx -y pagefind --source dist",
     "preview": "astro build && npx -y pagefind --source dist && astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "index": "npx -y pagefind --source dist"
   },
   "dependencies": {
     "@astrojs/tailwind": "^2.1.2",
+    "@fontsource/inter": "^4.5.14",
     "astro": "^1.6.10",
     "astro-default-frontmatter": "^0.0.1",
     "astro-google-fonts-optimizer": "^0.2.2",

@@ -45,7 +45,7 @@ const {
             } = post.frontmatter as Post
 
             return (
-                <article>
+                <article data-pagefind-filter="type:post">
                     <a href={`/posts/${slug}`} class="text-black font-bold">{title}</a>
                     <div class="flex items-center gap-3 text-fluid-0">
                         <time>{(new Date(date)).toDateString()}</time>

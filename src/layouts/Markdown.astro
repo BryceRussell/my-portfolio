@@ -1,5 +1,4 @@
 ---
-import { GoogleFontsOptimizer } from "astro-google-fonts-optimizer";
 import { SEO } from "astro-seo";
 
 import Navbar from "@/components/Navbar.astro";
@@ -10,7 +9,6 @@ import '@/css/markdown.scss'
 
 const  {
     SEO: SEOProp,
-    font="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
 } = Astro.props
 ---
 
@@ -19,7 +17,6 @@ const  {
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
-        {font && <GoogleFontsOptimizer url={font}/>}
         <SEO {...SEOProp}/>
         <slot name="head"/>
 	</head>

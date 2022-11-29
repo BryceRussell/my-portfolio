@@ -1,0 +1,40 @@
+#theme-toggle {
+    display: block;
+    position: relative;
+}
+
+#theme-toggle *:nth-child(1) {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    transition: height 250ms;
+}
+
+#theme-toggle *:nth-child(2) {
+    position: absolute;
+    inset: 0;
+    height: 0;
+    transition: height 250ms;
+}
+
+body.dark {
+    --primary: #34c740;
+    --primary-a: rgba(52, 199, 64, .25);
+    --warning: #FFD60A;
+    --warning-a: rgba(255, 214, 10, .5);
+    --invalid: #FF3B30;
+    --light: #1f1f1f;
+    --lighter: #000;
+    --gray: #2e2e2e;
+    --grayer: #9e9e9e;
+    --dark: #ddd;
+    --darker: #fefefe;
+}
+
+body.dark #theme-toggle *:nth-child(1) {
+        height: 0;
+}
+
+body.dark #theme-toggle *:nth-child(2) {
+    height: 100%;
+}

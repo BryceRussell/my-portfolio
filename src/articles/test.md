@@ -26,6 +26,8 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat delectus, sapi
 
 **Code**: `Lorem ipsum dolor sit amet consectetur adipisicing elit.`
 
+**Multi Line Code**: `Lorem ipsum dolor sit amet consectetur adipisicing elit.` Lorem ipsum dolor sit amet consectetur adipisicing elit. `Lorem ipsum dolor sit amet consectetur adipisicing elit.`
+
 **Lists**
 
 - Orange

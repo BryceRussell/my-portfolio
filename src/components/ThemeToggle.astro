@@ -13,7 +13,7 @@ import { Icon } from 'astro-icon';
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => toggleTheme(!e.matches))
 </script>
 
-<button id="theme-toggle" onclick="toggleTheme()" astro-icon>
+<button id="theme-toggle" onclick="toggleTheme()" aria-label="toggle theme">
         <Icon name="carbon:sun" />
         <Icon name="carbon:moon" />
 </button>

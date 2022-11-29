@@ -1,15 +1,40 @@
 ---
+import type { Frontmatter } from '@/types';
 import { SEO } from "astro-seo";
-
 import Navbar from "@/components/Navbar.astro";
 import Footer from "@/components/Footer.astro";
-
-import '@/css/tailwind.css'
+import '@/css/modules/tailwind.css';
 import '@/css/markdown.scss'
 
-const  {
-    SEO: SEOProp,
-} = Astro.props
+export interface Props extends Frontmatter {};
+
+const {
+	title,
+	description
+} = Astro.props as Props
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+
+const _SEO = {
+	title: title || "Bryce Russell's Web Development Portfolio and Blog",
+	description: description || "Bryce Russell's web development portfolio and blog",
+	canonical: canonical,
+	openGraph: {
+		basic: {
+			title: "Bryce Russell's Web Development Website",
+			url: canonical,
+			image: "/og.png",
+			type: "website"
+		},
+		optional: {
+			siteName: "Bryce",
+			description: "Bryce Russell's portfolio and blog about web devlopment"
+		},
+		image: {
+			alt: "logo"
+		}
+	}
+}
 ---
 
 <html lang="en">
@@ -17,7 +42,7 @@ const  {
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
-        <SEO {...SEOProp}/>
+        <SEO {..._SEO}/>
         <slot name="head"/>
 	</head>
 	<body>

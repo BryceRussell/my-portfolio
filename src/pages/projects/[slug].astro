@@ -1,10 +1,10 @@
 ---
 import { Icon } from 'astro-icon';
 import Markdown from "@/layouts/Markdown.astro";
-import type { Project } from '@/types';
+import type { Article, Frontmatter } from '@/types';
 
 export async function getStaticPaths() {
-    const projects = await Astro.glob('../../projects/*.md')
+    const projects = await Astro.glob<Frontmatter>('../../projects/*.md')
     return projects.map((project) => {
         return {
             params: {
@@ -17,9 +17,17 @@ export async function getStaticPaths() {
     })
 }
 
+export type Props = {
+    project: Article;
+}
+
+const { project } = Astro.props
+
 const {
-    project
-} = Astro.props
+    frontmatter,
+    compiledContent,
+    getHeadings
+} = project
 
 const {
     title,
@@ -27,10 +35,10 @@ const {
     source,
     demo,
     tags=[]
-} = project.frontmatter as Project
+} = frontmatter
 ---
 
-<Markdown>
+<Markdown {...frontmatter}>
     <div class="my-5">
         <h1 class="p-0">{title}</h1>
         <ul class="flex gap-1">
@@ -45,6 +53,6 @@ const {
         </div>
     </div>
     <section class="markdown">
-        <Fragment set:html={project.compiledContent()}/>
+        <Fragment set:html={compiledContent()}/>
     </section>
 </Markdown>

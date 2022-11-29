@@ -1,8 +1,10 @@
 /* Custom Content */
 
-body > nav [astro-icon] {
-    height: var(--fluid-3);
-    width: var(--fluid-3);
+body > nav [astro-icon],
+#search-link,
+#theme-toggle {
+    height: var(--fluid-4);
+    width: var(--fluid-4);
 }
 
 /* Basic Styles / Markdown Content / Typography */
@@ -75,16 +77,11 @@ blockquote {
     border-left: .25rem solid #e5e4e2;
 }
 
-:not(pre) code {
-  border-radius: 3px;
-  background-color: var(--gray);
-}
-
-* :not(pre) > code {
+:not(pre) > code {
     padding: 2px 4px;
     vertical-align: text-bottom;
+    border-radius: 3px;
     background-color: var(--gray);
-    border-bottom: 1px solid var(--gray);
 }
 
 pre {

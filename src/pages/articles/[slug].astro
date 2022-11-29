@@ -1,25 +1,31 @@
 ---
 import { Icon } from 'astro-icon';
 import Markdown from "@/layouts/Markdown.astro";
-import type { Frontmatter } from '@/types';
+import type { Article, Frontmatter } from '@/types';
 
 export async function getStaticPaths() {
-    const posts = await Astro.glob('../../posts/*.md')
-    return posts.map((post) => {
+    const articles = await Astro.glob<Frontmatter>('../../articles/*.md')
+    return articles.map((article) => {
         return {
             params: {
-                slug: post.frontmatter.slug
+                slug: article.frontmatter.slug
             },
             props: {
-                post
+                article
             } 
         }
     })
 }
+export type Props = {
+    article: Article;
+}
+
+const { article } = Astro.props
 
 const {
-    post
-} = Astro.props
+    frontmatter,
+    compiledContent
+} = article
 
 const {
     title,
@@ -27,15 +33,15 @@ const {
     source,
     demo,
     tags=[]
-} = post.frontmatter as Frontmatter
+} = frontmatter
 ---
 
-<Markdown>
+<Markdown {...frontmatter}>
     <div class="my-5">
         <h1 class="p-0">{title}</h1>
         <ul class="flex gap-1">
             {tags.map((tag, i) => {
-                return <li><a href={`/posts/tags/${tag}`}>{tag}</a>{i < tags.length - 1 && ','}</li>
+                return <li><a href={`/articles/tags/${tag}`}>{tag}</a>{i < tags.length - 1 && ','}</li>
             })}
         </ul>
         <div class="flex gap-3 my-1">
@@ -45,6 +51,6 @@ const {
         </div>
     </div>
     <section class="markdown">
-        <Fragment set:html={post.compiledContent()}/>
+        <Fragment set:html={compiledContent()}/>
     </section>
 </Markdown>

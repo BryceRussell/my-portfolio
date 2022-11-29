@@ -1,17 +1,3 @@
-@mixin lightVars {
-    --primary: rgb(25, 110, 208);
-    --primary-a: rgba(25, 110, 208, .25);
-    --warning: #ffe135;
-    --warning-a: rgba(255, 225, 53, .5);
-    --invalid: #dc143c;
-    --dark: #1a1a1a;
-    --darker: #000;
-    --grayer: #bbbbbb;
-    --gray: #e5e4e2;
-    --light: #f8f8f8;
-    --lighter: #FFF;
-}
-
 *,
 *::before,
 *::after {
@@ -19,7 +5,7 @@
   background-repeat: no-repeat;
 }
 
-body {
+:root {
     cursor: default;
     overflow-wrap: break-word;
     -webkit-tap-highlight-color: transparent;
@@ -28,19 +14,6 @@ body {
     text-rendering: optimizeLegibility;
     tab-size: 4;
 
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    height: 100%;
-    width: 100%;
-    max-width: 80ch;
-    margin: 0 auto;
-    background-color: var(--light);
-    font-family: var(--font);
-    line-height: 1.25;
-    font-size: var(--fluid-2);
-    color: var(--dark);
-
     --primary: rgb(25, 110, 208);
     --primary-a: rgba(25, 110, 208, .25);
     --warning: #ffe135;
@@ -48,12 +21,12 @@ body {
     --invalid: #dc143c;
     --dark: #1a1a1a;
     --darker: #000;
-    --grayer: #bbbbbb;
-    --gray: #e5e4e2;
-    --light: #f8f8f8;
+    --grayer: #666;
+    --gray: #e8e8e8;
+    --light: #fdfdfd;
     --lighter: #FFF;
 
-    --font: 'Inter', 'sans-serif';
+    --font: 'Helvetica', 'sans-serif';
 
     --fluid-0: clamp(0.8rem, 0.06vw + 0.78rem, 0.83rem);
     --fluid-1: clamp(0.88rem, 0.19vw + 0.84rem, 1rem);
@@ -67,18 +40,19 @@ body {
     --fluid-9: clamp(1.88rem, 3.59vw + 1.16rem, 4.3rem);
 }
 
-body:not([class*="dark"]) {
-    --primary: rgb(25, 110, 208);
-    --primary-a: rgba(25, 110, 208, .25);
-    --warning: #ffe135;
-    --warning-a: rgba(255, 225, 53, .5);
-    --invalid: #dc143c;
-    --dark: #1a1a1a;
-    --darker: #000;
-    --grayer: #bbbbbb;
-    --gray: #e5e4e2;
-    --light: #f8f8f8;
-    --lighter: #FFF;
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    max-width: 80ch;
+    margin: 0 auto;
+    background-color: var(--light);
+    font-family: var(--font);
+    line-height: 1.25;
+    font-size: var(--fluid-2);
+    color: var(--dark);
 }
 
 main {

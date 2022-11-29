@@ -38,13 +38,13 @@ const {
 
 <Markdown {...frontmatter}>
     <div class="my-5">
-        <h1 class="p-0">{title}</h1>
         <ul class="flex gap-1">
             {tags.map((tag, i) => {
                 return <li><a href={`/articles/tags/${tag}`}>{tag}</a>{i < tags.length - 1 && ','}</li>
             })}
         </ul>
-        <div class="flex gap-3 my-1">
+        <h1 class="my-1 p-0">{title}</h1>
+        <div class="flex gap-3">
             <span>{(new Date(date)).toDateString()}</span>
             {source &&<a href={source} title="Source" class="opacity-75 hover:opacity-50"><Icon name="mdi:github" size={24}/></a>}
             {demo && <a href={demo} title="Demo" class="opacity-75 hover:opacity-50"><Icon name="zondicons:computer-laptop" size={24} /></a>}

@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon';
 import Markdown from "@/layouts/Markdown.astro";
-import type { Post } from '@/types';
+import type { Frontmatter } from '@/types';
 
 export async function getStaticPaths() {
     const posts = await Astro.glob('../../posts/*.md')
@@ -27,7 +27,7 @@ const {
     source,
     demo,
     tags=[]
-} = post.frontmatter as Post
+} = post.frontmatter as Frontmatter
 ---
 
 <Markdown>
@@ -40,8 +40,8 @@ const {
         </ul>
         <div class="flex gap-3 my-1">
             <span>{(new Date(date)).toDateString()}</span>
-            {source &&<a href={source} title="Source" class="text-black opacity-75 hover:opacity-50"><Icon name="mdi:github" size={24}/></a>}
-            {demo && <a href={demo} title="Demo" class="text-black opacity-75 hover:opacity-50"><Icon name="zondicons:computer-laptop" size={24} /></a>}
+            {source &&<a href={source} title="Source" class="opacity-75 hover:opacity-50"><Icon name="mdi:github" size={24}/></a>}
+            {demo && <a href={demo} title="Demo" class="opacity-75 hover:opacity-50"><Icon name="zondicons:computer-laptop" size={24} /></a>}
         </div>
     </div>
     <section class="markdown">

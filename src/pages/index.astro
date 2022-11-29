@@ -1,13 +1,14 @@
 ---
 import Base from "@/layouts/Base.astro";
 import CodeTagIcons from '@/components/CodeTagIcons.astro';
+import type { Frontmatter } from '@/types';
 
-let projects = await Astro.glob('../projects/*.md');
-projects = projects.filter(post => post.frontmatter.draft !== true)
+const projects = await Astro.glob<Frontmatter>('../projects/*.md');
+const posts = await Astro.glob<Frontmatter>('../posts/*.md');
 
-let posts = await Astro.glob('../posts/*.md');
-posts = posts.filter(post => post.frontmatter.draft !== true)
-posts = posts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+const recent = [...projects, ...posts]
+    .filter(post => post && post.frontmatter.draft !== true)
+    .sort((a, b) => new Date(''+b.frontmatter.date).valueOf() - new Date(''+a.frontmatter.date).valueOf());
 ---
 
 <Base>
@@ -15,52 +16,32 @@ posts = posts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a
         <h1 class="font-bold text-fluid-9 p-0">Bryce Russell</h1>
         <p class="p-0 text-fluid-6">Web Developer</p>
     </hgroup>
-    <div class="grid sm:grid-cols-2 sm:auto-cols-auto">
-        <div class="mb-8">
-            <h2 class="mb-3">Projects</h2>
-            <ul class="flex flex-col gap-3">
-                { projects.map((project) => {
+    <section>
+            <h2 class="mb-3">Recent</h2>
+            <ul class="flex flex-col gap-5">
+                { recent.map((post) => {
                     const {
                         slug,
-                        package: _package,
+                        package: pkg,
                         description,
-                        tags
-                    } = project.frontmatter
-
+                        date,
+                        tags=[]
+                    } = post.frontmatter
                     return (
                     <li>
-                        <span class="flex flex-col xs:flex-row xs:items-center gap-1 mb-1">
-                            <a href={`/projects/${slug}`} class="text-black font-bold">{_package || slug}</a>
-                            <span class="flex gap-1 text-fluid-0">
-                                <CodeTagIcons tags={tags} />
-                            </span>
-                        </span>
+                        <a href={`/${post.file.split('/').reverse()[1]}/${slug}`} class="text-darker font-bold">{pkg || slug}</a>
+                        <div class="flex flex-col sm:flex-row items-start gap-x-3 text-fluid-0">
+                            <time class="whitespace-nowrap text-grayer">{(new Date(''+date)).toDateString()}</time>
+                            <div class="flex flex-wrap gap-x-3">                            
+                                {tags.map((tag) => {
+                                    return <a href={`/projects/tags/${tag}`}>#{tag}</a>
+                                })}
+                            </div>
+                        </div>
                         <p class="text-fluid-0">{description}</p>
                     </li>
                     )
                 })}
             </ul>
-        </div>
-        <div class="sm:text-right">
-            <h2>Posts</h2>
-            <ul>
-                { posts.map((post) => {
-                    const {
-                        slug,
-                        package: _package,
-                        description,
-                        date: _date
-                    } = post.frontmatter
-                    const date = new Date(_date)
-                    return (
-                    <li class="flex flex-col gap-1 py-3 text-fluid-0">
-                        <a href={`/posts/${slug}`} class="text-black font-bold text-fluid-1">{slug}</a>
-                        <time>{date.toDateString()}</time>
-                        <p>{description}</p>
-                    </li>
-                    )
-                })}
-            </ul>
-        </div>
-    </div>
+    </section>
 </Base>

@@ -5,8 +5,6 @@ export interface Props {
     tags: string[]; 
 }
 
-const { tags: _tags } = Astro.props
-
 const iconDict: {[tag: string]: string} = {
     "library": "ion:library-sharp",
     "astro": "vscode-icons:file-type-astro",
@@ -21,7 +19,67 @@ const iconDict: {[tag: string]: string} = {
     "theme": "ic:baseline-palette"
 }
 
-const tags = _tags.filter((tag) => Object.keys(iconDict).includes(tag))
+const tags = (Astro.props.tags||[]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+).filter((tag) => Object.keys(iconDict).includes(tag))
 ---
 
 { tags.map((tag) => {

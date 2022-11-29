@@ -1,11 +1,16 @@
 ---
-
+import { Icon } from 'astro-icon';
+import ThemeToggle from '@/components/ThemeToggle.astro';
 ---
 
-<nav class="flex justify-center max-w-[80ch] mx-auto p-5">
-    <ul class="flex gap-3">
+<nav class="flex justify-between p-5">
+    <ul class="flex items-center gap-3">
         <li><a href="/">Home</a></li>
         <li><a href="/projects">Projects</a></li>
         <li><a href="/posts">Posts</a></li>
+    </ul>
+    <ul class="flex items-center gap-3 leading-none">
+        <li><a id="search-link" href="/search"><Icon name="ic:baseline-search"/></a></li>
+        <li><ThemeToggle /></li>
     </ul>
 </nav>

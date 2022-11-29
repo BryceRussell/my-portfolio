@@ -35,13 +35,13 @@ const {
         <h1 class="p-0">{title}</h1>
         <ul class="flex gap-1">
             {tags.map((tag, i) => {
-                return <li><a href={`/projects/tags/${tag}`}>{tag}</a>{i < tags.length - 1 && ','}</li>
+                return <li><a href={`/projects/tags/${tag}`}>#{tag}</a>{i < tags.length - 1 && ','}</li>
             })}
         </ul>
         <div class="flex items-center gap-3 my-1">
             <span>{(new Date(date)).toDateString()}</span>
-            {source &&<a href={source} title="Source" class="text-black opacity-75 hover:opacity-50"><Icon name="mdi:github" size={24}/></a>}
-            {demo && <a href={demo} title="Demo" class="text-black opacity-75 hover:opacity-50"><Icon name="zondicons:computer-laptop" size={24} /></a>}
+            {source &&<a href={source} title="Source" class="opacity-75 hover:opacity-50"><Icon name="mdi:github" size={24}/></a>}
+            {demo && <a href={demo} title="Demo" class="opacity-75 hover:opacity-50"><Icon name="zondicons:computer-laptop" size={24} /></a>}
         </div>
     </div>
     <section class="markdown">

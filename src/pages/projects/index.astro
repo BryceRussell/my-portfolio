@@ -1,6 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
-import type { Project } from '@/types';
+import type { Frontmatter } from '@/types';
 
 let projects = await Astro.glob('../../projects/*.md');
 projects = projects.filter(project => project.frontmatter.draft !== true)
@@ -9,7 +9,7 @@ projects = projects.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new 
 
 <Base>
     <h1 class="text-center">My projects</h1>
-    <div class="flex flex-col gap-3 my-5">
+    <div class="flex flex-col gap-5 my-5">
         { projects.map((project) => {
             const {
                 slug,
@@ -17,15 +17,17 @@ projects = projects.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new 
                 description,
                 date='',
                 tags=[],
-            } = project.frontmatter as Project
+            } = project.frontmatter as Frontmatter
             return (
                 <article>
-                    <a href={`/projects/${slug}`} class="text-black font-bold text-fluid-2">{_package||slug}</a>
-                    <div class="flex items-center gap-3 text-fluid-0">
-                        <time>{(new Date(date)).toDateString()}</time>
-                        {tags.map((tag) => {
-                            return <a href={`/projects/tags/${tag}`}>{tag}</a>
-                        })}
+                    <a href={`/projects/${slug}`} class="text-darker font-bold">{_package||slug}</a>
+                    <div class="flex flex-col sm:flex-row items-start gap-x-3 text-fluid-0">
+                        <time class="whitespace-nowrap text-grayer">{(new Date(date)).toDateString()}</time>
+                        <div class="flex flex-wrap gap-x-3">                            
+                            {tags.map((tag) => {
+                                return <a href={`/projects/tags/${tag}`}>#{tag}</a>
+                            })}
+                        </div>
                     </div>
                     <p class="text-fluid-0">
                         {description}

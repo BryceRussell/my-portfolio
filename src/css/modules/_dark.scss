@@ -1,0 +1,54 @@
+@mixin darkVars {
+    --primary: rgb(72, 123, 181);
+    --light: #121212;
+    --lighter: #000;
+    --dark: #eee;
+    --darker: #FFF;
+}
+
+@mixin darkElements {
+    :not(pre) code {
+        color: var(--light);
+    }
+}
+
+#theme-toggle {
+    display: block;
+    position: relative;
+}
+
+#theme-toggle [astro-icon*="sun"] {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    transition: height 250ms;
+}
+
+#theme-toggle [astro-icon*="moon"] {
+    position: absolute;
+    inset: 0;
+    height: 0;
+    transition: height 250ms;
+}
+
+body.dark {
+    @include darkVars;
+
+    #theme-toggle [astro-icon*="sun"] {
+        height: 0;
+    }
+
+    #theme-toggle [astro-icon*="moon"] {
+        height: 100%;
+    }
+
+    @include darkElements;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        @include darkVars;
+    }
+
+    @include darkElements;
+}

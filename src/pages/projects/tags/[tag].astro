@@ -1,10 +1,11 @@
 ---
+import { getTags } from '@/util';
+import type { Frontmatter } from '@/types';
 import Base from "@/layouts/Base.astro";
-import type { Project } from '@/types';
 
 export async function getStaticPaths() {
     const projects = await Astro.glob('../../../projects/*.md')
-    const tags = [...new Set(projects.map(project => project.frontmatter.tags).flat())].filter(tag => tag !== undefined)
+    const tags = getTags(projects)
     return tags.map((tag) => {
         return {
             params: {
@@ -33,7 +34,7 @@ const {
 
 <Base>
     <h1 class="text-center">My Projects</h1>
-    <div class="flex flex-col gap-3 my-5">
+    <div class="flex flex-col gap-5 my-5">
         { projects.map((project) => {
             const {
                 slug,
@@ -41,15 +42,17 @@ const {
                 description,
                 date='',
                 tags=[],
-            } = project.frontmatter as Project
+            } = project.frontmatter as Frontmatter
             return (
                 <article>
-                    <a href={`/projects/${slug}`} class="text-black font-bold">{title}</a>
-                    <div class="flex items-center gap-3 text-fluid-0">
-                        <time>{(new Date(date)).toDateString()}</time>
-                        {tags.map((tag) => {
-                            return <a href={`/projects/tags/${tag}`}>{tag}</a>
-                        })}
+                    <a href={`/projects/${slug}`} class="text-darker font-bold">{title}</a>
+                    <div class="flex flex-col sm:flex-row items-start gap-x-3 text-fluid-0">
+                        <time class="whitespace-nowrap text-grayer">{(new Date(date)).toDateString()}</time>
+                        <div class="flex flex-wrap gap-x-3">                            
+                            {tags.map((tag) => {
+                                return <a href={`/projects/tags/${tag}`}>#{tag}</a>
+                            })}
+                        </div>
                     </div>
                     <p class="text-fluid-0">
                         {description}

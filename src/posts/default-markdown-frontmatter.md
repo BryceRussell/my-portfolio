@@ -1,7 +1,7 @@
 ---
 slug: 'astro-default-frontmatter'
-title: Astro Default Frontmatter
-description: How to create a remark plugin for injecting default frontmatter into your markdown in Astro
+title: Default Frontmatter in Astro
+description: How to create a Remark plugin for Astro to inject default frontmatter values into your markdown
 date: 2022/09/08
 demo: 'https://stackblitz.com/edit/github-hfgk3n'
 source: 'https://github.com/BryceRussell/astro-remark-default-frontmatter'

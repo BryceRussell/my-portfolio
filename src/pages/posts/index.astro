@@ -1,6 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
-import type { Post } from '@/types';
+import type { Frontmatter } from '@/types';
 
 let posts = await Astro.glob('../../posts/*.md');
 posts = posts.filter(post => post.frontmatter.draft !== true)
@@ -9,7 +9,7 @@ posts = posts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a
 
 <Base>
     <h1 class="text-center">My Posts</h1>
-    <div class="flex flex-col gap-3 my-5">
+    <div class="flex flex-col gap-5 my-5">
         { posts.map((post) => {
             const {
                 slug,
@@ -17,15 +17,17 @@ posts = posts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a
                 description,
                 date='',
                 tags=[],
-            } = post.frontmatter as Post
+            } = post.frontmatter as Frontmatter
             return (
                 <article>
-                    <a href={`/posts/${slug}`} class="text-black font-bold">{title}</a>
-                    <div class="flex items-center gap-3 text-fluid-0">
-                        <time>{(new Date(date)).toDateString()}</time>
-                        {tags.map((tag) => {
-                            return <a href={`/posts/tags/${tag}`}>{tag}</a>
-                        })}
+                    <a href={`/posts/${slug}`} class="text-darker font-bold">{title}</a>
+                    <div class="flex flex-col sm:flex-row items-start gap-x-3 text-fluid-0">
+                        <time class="whitespace-nowrap text-grayer">{(new Date(date)).toDateString()}</time>
+                        <div class="flex flex-wrap gap-x-3">                            
+                            {tags.map((tag) => {
+                                return <a href={`/posts/tags/${tag}`}>#{tag}</a>
+                            })}
+                        </div>
                     </div>
                     <p class="text-fluid-0">
                         {description}

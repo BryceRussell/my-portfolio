@@ -1,7 +1,15 @@
-/* Content / Typography / Markdown */
+/* Custom Content */
+
+body > nav [astro-icon] {
+    height: var(--fluid-3);
+    width: var(--fluid-3);
+}
+
+/* Basic Styles / Markdown Content / Typography */
 
 h1, h2, h3, h4, h5, h6, strong {
     font-weight: bold;
+    color: var(--darker);
 }
 
 h1 {
@@ -36,7 +44,7 @@ a {
 a:hover {
     text-decoration: underline;
     filter: brightness(70%);
-    transition: filter .3s;
+    transition: filter 100ms;
 }
 a:focus {
     text-decoration: underline;

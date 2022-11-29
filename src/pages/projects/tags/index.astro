@@ -1,0 +1,16 @@
+---
+import { getTags } from '@/util';
+
+import Base from "@/layouts/Base.astro";
+
+const projects = await Astro.glob('../../../projects/*.md')
+const tags = getTags(projects)
+---
+
+<Base>
+    <section class="flex flex-wrap gap-5">
+        { tags.map(tag => {
+            return <a>#{tag}</a>
+        })}
+    </section>
+</Base>

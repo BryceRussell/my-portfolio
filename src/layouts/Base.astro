@@ -4,7 +4,7 @@ import { SEO } from "astro-seo";
 import Navbar from "@/components/Navbar.astro";
 import Footer from "@/components/Footer.astro";
 
-import '@/css/tailwind.scss';
+// import '@/css/modules/tailwind.css';
 import '@/css/base.scss'
 
 const  {
@@ -36,7 +36,6 @@ const  {
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
-        <!-- {font && <GoogleFontsOptimizer url={font}/>} -->
         <SEO {...SEOProp}/>
         <slot name="head"/>
 	</head>

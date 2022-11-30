@@ -67,14 +67,14 @@ small, sub, sup, .data-footnote-backref, [aria-describedby="footnote-label"] {
 
 mark {
     width: fit-content;
+    padding: 2px 4px;
     background-color: var(--warning-a);
-    padding: .25em .25em .125em .25em;
 }
 
 blockquote {
     margin: .5em 0 .5em 2em;
     padding: .5em 1em;
-    border-left: .25rem solid #e5e4e2;
+    border-left: .25rem solid var(--gray);
 }
 
 :not(pre) > code {

@@ -1,12 +1,3 @@
-/* Custom Content */
-
-body > nav [astro-icon],
-#search-link,
-#theme-toggle {
-    height: var(--fluid-4);
-    width: var(--fluid-4);
-}
-
 /* Basic Styles / Markdown Content / Typography */
 
 h1, h2, h3, h4, h5, h6, strong {
@@ -67,7 +58,7 @@ small, sub, sup, .data-footnote-backref, [aria-describedby="footnote-label"] {
 
 mark {
     width: fit-content;
-    padding: 2px 4px;
+    padding: 1px 3px;
     background-color: var(--warning-a);
 }
 

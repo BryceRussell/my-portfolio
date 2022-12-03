@@ -4,7 +4,7 @@ import Markdown from "@/layouts/Markdown.astro";
 import type { Article, Frontmatter } from '@/types';
 
 export async function getStaticPaths() {
-    const articles = await Astro.glob<Frontmatter>('../../articles/*.md')
+    const articles = await Astro.glob<Frontmatter>('../../blog/*.md')
     return articles.map((article) => {
         return {
             params: {
@@ -40,7 +40,7 @@ const {
     <div class="my-5">
         <ul class="flex gap-1">
             {tags.map((tag, i) => {
-                return <li><a href={`/articles/tags/${tag}`}>{tag}</a>{i < tags.length - 1 && ','}</li>
+                return <li><a href={`/blog/tags/${tag}`}>{tag}</a>{i < tags.length - 1 && ','}</li>
             })}
         </ul>
         <h1 class="my-1 p-0">{title}</h1>

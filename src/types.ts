@@ -64,4 +64,4 @@ export interface Frontmatter {
 }
 
 export type Article = MarkdownInstance<Frontmatter>;
-export type MarkdownPage = MarkdownLayoutProps<Frontmatter>;
+export type ArticleLayout = MarkdownLayoutProps<Frontmatter>;

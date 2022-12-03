@@ -4,7 +4,7 @@ import CodeTagIcons from '@/components/CodeTagIcons.astro';
 import type { Frontmatter } from '@/types';
 
 const projects = await Astro.glob<Frontmatter>('../projects/*.md');
-const articles = await Astro.glob<Frontmatter>('../articles/*.md');
+const articles = await Astro.glob<Frontmatter>('../blog/*.md');
 
 const recent = [...projects, ...articles]
     .filter(article => article && article.frontmatter.draft !== true)
@@ -21,20 +21,22 @@ const recent = [...projects, ...articles]
             <ul class="flex flex-col gap-5">
                 { recent.map((article) => {
                     const {
+                        title,
                         slug,
                         package: pkg,
                         description,
                         date,
                         tags=[]
                     } = article.frontmatter
+                    const type = article.file.split('/').reverse()[1]
                     return (
                     <li>
-                        <a href={`/${article.file.split('/').reverse()[1]}/${slug}`} class="text-darker font-bold">{pkg || slug}</a>
+                        <a href={`/${type}/${slug}`} class="text-darker font-bold">{type === "blog"?title:pkg||slug}</a>
                         <div class="flex flex-col sm:flex-row items-start gap-x-3 text-fluid-0">
                             <time class="whitespace-nowrap text-grayer">{(new Date(''+date)).toDateString()}</time>
                             <div class="flex flex-wrap gap-x-3">                            
                                 {tags.map((tag) => {
-                                    return <a href={`/projects/tags/${tag}`}>#{tag}</a>
+                                    return <a href={`/${type}/tags/${tag}`}>#{tag}</a>
                                 })}
                             </div>
                         </div>

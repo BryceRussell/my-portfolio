@@ -1,10 +1,11 @@
 <style is:global>
+    pre.astro-code {
+        position: relative;
+    }
 	.astro-code .code-copy {
-		position: sticky;
-		top: 0;
-		left: calc(100% - 40px);
-		margin-right: -20px;
-		margin-bottom: -30px;
+		position: absolute;
+        top: 1em;
+        right: 1em;
 		opacity: .75;
 		cursor: pointer;
 		transition: opacity .2s ease-in-out;
@@ -13,7 +14,6 @@
 		opacity: 1;
 	}
 	.astro-code .code-copy.copied {
-		left: calc(100% - 58px);
 		opacity: 1;
 	}
 </style>

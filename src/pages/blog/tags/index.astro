@@ -4,15 +4,15 @@ import { tagFrequency } from '@/util';
 
 import Base from "@/layouts/Base.astro";
 
-const projects = await Astro.glob<Frontmatter>('../../../projects/*.md')
+const blog = await Astro.glob<Frontmatter>('../../../blog/*.md')
 ---
 
 <Base>
     <section class="flex flex-col gap-5">
-        <h2 class="text-center">Project Tags</h2>
+        <h2 class="text-center">Blog Tags</h2>
         <ol class="flex flex-wrap justify-center sm:justify-start gap-5">
-            { Object.entries(tagFrequency(projects)).map(([tag, freq]) => {
-                if (tag) return <li><a href={`/projects/tags/${tag}`}>#{tag}{freq > 1 && `(${freq})`}</a></li>
+            { Object.entries(tagFrequency(blog)).map(([tag, freq]) => {
+                if (tag) return <li><a href={`/blog/tags/${tag}`}>#{tag}{freq > 1 && `(${freq})`}</a></li>
             })}
         </ol>
     </section>

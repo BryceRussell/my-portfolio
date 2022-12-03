@@ -1,23 +1,26 @@
 #theme-toggle {
     display: block;
     position: relative;
-}
-
-#theme-toggle *:nth-child(1) {
+    outline: none;
+    border: none;
+    background-color: transparent;
+} #theme-toggle *:nth-child(1) {
     position: absolute;
     inset: 0;
     height: 100%;
+    width: 100%;
     transition: height 250ms;
-}
-
-#theme-toggle *:nth-child(2) {
+} #theme-toggle *:nth-child(2) {
     position: absolute;
     inset: 0;
     height: 0;
+    width: 100%;
     transition: height 250ms;
-}
-
-body.dark {
+} body.dark #theme-toggle *:nth-child(1) {
+    height: 0;
+} body.dark #theme-toggle *:nth-child(2) {
+    height: 100%;
+} body.dark {
     --primary: #34c740;
     --primary-a: rgba(52, 199, 64, .25);
     --warning: #FFCC00;
@@ -26,15 +29,7 @@ body.dark {
     --light: #1f1f1f;
     --lighter: #000;
     --gray: #2e2e2e;
-    --grayer: #9e9e9e;
+    --grayer: #ABABAB;
     --dark: #ddd;
     --darker: #fefefe;
-}
-
-body.dark #theme-toggle *:nth-child(1) {
-        height: 0;
-}
-
-body.dark #theme-toggle *:nth-child(2) {
-    height: 100%;
 }

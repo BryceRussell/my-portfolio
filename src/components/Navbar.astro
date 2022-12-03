@@ -7,10 +7,20 @@ import ThemeToggle from '@/components/ThemeToggle.astro';
     <ul class="flex items-center gap-3">
         <li><a href="/">Home</a></li>
         <li><a href="/projects">Projects</a></li>
-        <li><a href="/articles">Articles</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/tags">Tags</a></li>
     </ul>
     <ul class="flex items-center gap-3 leading-none">
-        <li><a id="search-link" href="/search" aria-label="search link" class="block mt-0.5"><Icon name="ic:sharp-search"/></a></li>
-        <li><ThemeToggle /></li>
+        <li>
+            <a id="search-link" href="/search" aria-label="search link" class="block w-fluid-3 h-fluid-3 mt-0.5">
+                <Icon name="ic:sharp-search"/>
+            </a>
+        </li>
+        <li>
+            <ThemeToggle class="w-fluid-3 h-fluid-3 ">
+                <Icon name="carbon:sun" />
+                <Icon name="carbon:moon" />
+            </ThemeToggle>
+        </li>
     </ul>
 </nav>

@@ -1,11 +1,10 @@
 ---
-import type { Frontmatter } from '@/types';
-import { tagFrequency } from '@/util';
-
 import Base from "@/layouts/Base.astro";
+import { tagFrequency } from '@/util';
+import type { Frontmatter } from '@/types';
 
-const projects = await Astro.glob<Frontmatter>('../projects/*.md')
-const articles = await Astro.glob<Frontmatter>('../blog/*.md')
+const projects = await Astro.glob<Frontmatter>('/src/projects/*.md');
+const articles = await Astro.glob<Frontmatter>('/src/blog/*.md');
 ---
 
 <Base>
@@ -13,7 +12,7 @@ const articles = await Astro.glob<Frontmatter>('../blog/*.md')
         <h2>Articles</h2>
         <ol class="flex flex-wrap justify-center sm:justify-start gap-5">
             { Object.entries(tagFrequency(articles)).map(([tag, freq]) => {
-                if (tag) return <li><a href={`/blog/tags/${tag}`}>#{tag}{freq > 1 && `(${freq})`}</a></li>
+                if (tag) return <li><a href={`/blog/tags/${tag}`}>#{tag} {freq > 1 && `(${freq})`}</a></li>
             })}
         </ol>
     </section>
@@ -21,7 +20,7 @@ const articles = await Astro.glob<Frontmatter>('../blog/*.md')
         <h2>Projects</h2>
         <ol class="flex flex-wrap justify-center sm:justify-start gap-5">
             { Object.entries(tagFrequency(projects)).map(([tag, freq]) => {
-                if (tag) return <li><a href={`/projects/tags/${tag}`}>#{tag}{freq > 1 && `(${freq})`}</a></li>
+                if (tag) return <li><a href={`/projects/tags/${tag}`}>#{tag} {freq > 1 && `(${freq})`}</a></li>
             })}
         </ol>
     </section>

@@ -19,67 +19,7 @@ const iconDict: {[tag: string]: string} = {
     "theme": "ic:baseline-palette"
 }
 
-const tags = (Astro.props.tags||[]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-).filter((tag) => Object.keys(iconDict).includes(tag))
+const tags = (Astro.props.tags||[]).filter((tag) => Object.keys(iconDict).includes(tag))
 ---
 
 { tags.map((tag) => {

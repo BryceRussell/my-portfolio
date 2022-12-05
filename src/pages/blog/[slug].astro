@@ -1,31 +1,27 @@
 ---
-import { Icon } from 'astro-icon';
 import Markdown from "@/layouts/Markdown.astro";
-import type { Article, Frontmatter } from '@/types';
+import { Icon } from 'astro-icon';
+import type { Post, Frontmatter } from '@/types';
 
 export async function getStaticPaths() {
-    const articles = await Astro.glob<Frontmatter>('../../blog/*.md')
-    return articles.map((article) => {
+    const posts = await Astro.glob<Frontmatter>('/src/blog/*.md');
+    return posts.map((post) => {
         return {
             params: {
-                slug: article.frontmatter.slug
+                slug: post.frontmatter.slug
             },
             props: {
-                article
+                post
             } 
         }
     })
 }
+
 export type Props = {
-    article: Article;
+    post: Post;
 }
 
-const { article } = Astro.props
-
-const {
-    frontmatter,
-    compiledContent
-} = article
+const { post } = Astro.props
 
 const {
     title,
@@ -33,24 +29,24 @@ const {
     source,
     demo,
     tags=[]
-} = frontmatter
+} = post.frontmatter
 ---
 
-<Markdown {...frontmatter}>
+<Markdown {...post}>
     <div class="my-5">
         <ul class="flex gap-1">
             {tags.map((tag, i) => {
-                return <li><a href={`/blog/tags/${tag}`}>{tag}</a>{i < tags.length - 1 && ','}</li>
+                return <li><a href={`/blog/tags/${tag}`}>#{tag}</a>{i < tags.length - 1 && ','}</li>
             })}
         </ul>
         <h1 class="my-1 p-0">{title}</h1>
-        <div class="flex gap-3">
+        <div class="flex items-center gap-3">
             <span>{(new Date(date)).toDateString()}</span>
             {source &&<a href={source} title="Source" class="opacity-75 hover:opacity-50"><Icon name="mdi:github" size={24}/></a>}
             {demo && <a href={demo} title="Demo" class="opacity-75 hover:opacity-50"><Icon name="zondicons:computer-laptop" size={24} /></a>}
         </div>
     </div>
     <section class="markdown">
-        <Fragment set:html={compiledContent()}/>
+        <Fragment set:html={post.compiledContent()}/>
     </section>
 </Markdown>

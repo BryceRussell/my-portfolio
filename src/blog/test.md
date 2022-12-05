@@ -2,7 +2,6 @@
 title: 'Test Title'
 description: 'This is a description'
 slug: 'test'
-date: 1999-01-01
 ---
 
 # h1 Heading

@@ -63,5 +63,5 @@ export interface Frontmatter {
     draft?: boolean;
 }
 
-export type Article = MarkdownInstance<Frontmatter>;
-export type ArticleLayout = MarkdownLayoutProps<Frontmatter>;
+export type Post = MarkdownInstance<Frontmatter>;
+export type PostLayout = MarkdownLayoutProps<Frontmatter>;

@@ -1,17 +1,16 @@
 ---
-import type { Frontmatter } from '@/types';
-import { tagFrequency } from '@/util';
-
 import Base from "@/layouts/Base.astro";
+import { tagFrequency } from '@/util';
+import type { Frontmatter } from '@/types';
 
-const blog = await Astro.glob<Frontmatter>('../../../blog/*.md')
+const articles = await Astro.glob<Frontmatter>('/src/blog/*.md');
 ---
 
 <Base>
     <section class="flex flex-col gap-5">
         <h2 class="text-center">Blog Tags</h2>
         <ol class="flex flex-wrap justify-center sm:justify-start gap-5">
-            { Object.entries(tagFrequency(blog)).map(([tag, freq]) => {
+            { Object.entries(tagFrequency(articles)).map(([tag, freq]) => {
                 if (tag) return <li><a href={`/blog/tags/${tag}`}>#{tag}{freq > 1 && `(${freq})`}</a></li>
             })}
         </ol>

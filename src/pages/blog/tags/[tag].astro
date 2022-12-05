@@ -1,10 +1,11 @@
 ---
-import { getTags } from '@/util';
-import type { Frontmatter } from '@/types';
 import Base from "@/layouts/Base.astro";
+import PostList from '@/components/PostList.astro';
+import { getTags } from '@/util';
+import type { Post, Frontmatter } from '@/types';
 
 export async function getStaticPaths() {
-    const articles = await Astro.glob('../../../blog/*.md')
+    const articles = await Astro.glob<Frontmatter>('/src/blog/*.md');
     return getTags(articles).map((tag) => {
         return {
             params: {
@@ -18,47 +19,16 @@ export async function getStaticPaths() {
 }
 
 export interface Props {
-    articles?: any[];
+    articles?: Post[];
 }
 
-const {
-    articles=[]
-} = Astro.props
+const { articles = [] } = Astro.props
 
-const {
-    tag
-} = Astro.params
+const { tag } = Astro.params
 
 ---
 
 <Base>
     <h1 class="text-center">#{tag}</h1>
-    <div class="flex flex-col gap-5 my-5">
-        { articles.map((article) => {
-            const {
-                slug,
-                title,
-                description,
-                date='',
-                tags=[],
-            } = article.frontmatter as Frontmatter
-
-            return (
-                <article>
-                    <a href={`/blog/${slug}`} class="text-darker font-bold">{title}</a>
-                    <div class="flex flex-col sm:flex-row items-start gap-x-3 text-fluid-0">
-                        <time class="whitespace-nowrap text-grayer">{(new Date(date)).toDateString()}</time>
-                        <div class="flex flex-wrap gap-x-3">                            
-                            {tags.map((tag) => {
-                                return <a href={`/blog/tags/${tag}`}>#{tag}</a>
-                            })}
-                        </div>
-                    </div>
-                    <p class="text-fluid-0">
-                        {description}
-                    </p>
-                </article>
-            )
-        })}
-    </div>
+    <PostList posts={articles}/>
 </Base>

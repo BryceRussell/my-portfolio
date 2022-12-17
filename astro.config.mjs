@@ -7,11 +7,16 @@ export default defineConfig({
     process.env.NODE_ENV === 'production'
       ? 'https://brycerussell.com/'
       : 'https://localhost:3000/',
-  integrations: [tailwind({
-    config: { applyBaseStyles: false }
-  })],
+  integrations: [
+    tailwind({
+      config: { applyBaseStyles: false }
+    }
+  )],
   markdown: {
     extendDefaultPlugins: true,
     shikiConfig: { theme: 'slack-dark' }
-  }
+  },
+  experimental: {
+    contentCollections: true,
+  },
 });

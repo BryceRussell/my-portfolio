@@ -1,9 +1,9 @@
 ---
 import Base from "@/layouts/Base.astro";
 import PostList from "@/components/PostList.astro";
-import type { Frontmatter } from '@/types';
+import { getCollection } from 'astro:content';
 
-const articles = await Astro.glob<Frontmatter>('/src/blog/*.md');
+const articles = await getCollection('blog');
 ---
 
 <Base>

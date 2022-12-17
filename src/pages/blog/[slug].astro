@@ -1,14 +1,15 @@
 ---
+import { getCollection } from 'astro:content';
 import Markdown from "@/layouts/Markdown.astro";
 import { Icon } from 'astro-icon';
-import type { Post, Frontmatter } from '@/types';
+import type { BlogEntry } from '@/types';
 
 export async function getStaticPaths() {
-    const posts = await Astro.glob<Frontmatter>('/src/blog/*.md');
+    const posts = await getCollection('blog')
     return posts.map((post) => {
         return {
             params: {
-                slug: post.frontmatter.slug
+                slug: post.data.slug
             },
             props: {
                 post
@@ -18,7 +19,7 @@ export async function getStaticPaths() {
 }
 
 export type Props = {
-    post: Post;
+    post: BlogEntry;
 }
 
 const { post } = Astro.props
@@ -29,7 +30,7 @@ const {
     source,
     demo,
     tags=[]
-} = post.frontmatter
+} = post.data
 ---
 
 <Markdown {...post}>
@@ -47,6 +48,6 @@ const {
         </div>
     </div>
     <section class="markdown">
-        <Fragment set:html={post.compiledContent()}/>
+        <Fragment set:html={post.render()}/>
     </section>
 </Markdown>

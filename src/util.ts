@@ -1,33 +1,33 @@
-import type { Post } from '@/types';
+import type { Entry } from '@/types';
 
-export function filterPosts(...posts: Post[][]): Post[] {
-    return posts.flat().filter(post => post.frontmatter.draft !== true)
+export function filterPosts(...posts: Entry[][]): Entry[] {
+    return posts.flat().filter(post => post.data.draft !== true)
 }
 
-export function sortDates(...posts: Post[][]): Post[] {
+export function sortDates(...posts: Entry[][]): Entry[] {
     return posts.flat().sort((a, b) => (
-        (typeof b.frontmatter.date === 'string' ? Date.parse(b.frontmatter.date) : (b.frontmatter.date||0).valueOf()) -
-        (typeof a.frontmatter.date === 'string' ? Date.parse(a.frontmatter.date) : (a.frontmatter.date||0).valueOf())
+        (typeof b.data.date === 'string' ? Date.parse(b.data.date) : (b.data.date||0).valueOf()) -
+        (typeof a.data.date === 'string' ? Date.parse(a.data.date) : (a.data.date||0).valueOf())
     ))
 }
 
-export function filterSort(...posts: Post[][]): Post[] {
+export function filterSort(...posts: Entry[][]): Entry[] {
     return sortDates(filterPosts(posts.flat()))
 }
 
-export function getAllTags(...posts: Post[][]): string[] {
+export function getAllTags(...posts: Entry[][]): string[] {
     // Get all tags in an array of posts including duplicates
-    return posts.flat().map(post => post.frontmatter.tags||[]).flat()
+    return posts.flat().map(post => post.data.tags||[]).flat()
 }
 
-export function getTags(...posts: Post[][]): string[] {
+export function getTags(...posts: Entry[][]): string[] {
     // Get all tags in an array of posts without duplicates
     return [...new Set(getAllTags(...posts))]
 }
 
-export function tagFrequency(...posts: Post[][]): {[tag: string]: number} {
+export function tagFrequency(...posts: Entry[][]): Record<string, number> {
     // Number of times each tag is used inside an array of posts
-    const freqMap: { [tag: string]: number } = {};
+    const freqMap: Record<string, number> = {};
     
     for (const tag of getAllTags(...posts)) {
         freqMap[tag] = (freqMap[tag] || 0) + 1;

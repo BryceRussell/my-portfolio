@@ -1,5 +1,9 @@
-import type { MarkdownInstance, MarkdownLayoutProps } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 import type { HTMLAttributes } from 'astro/types';
+
+export type Entry = CollectionEntry<'projects'>|CollectionEntry<'blog'>
+export type ProjectEntry = CollectionEntry<'projects'>
+export type BlogEntry = CollectionEntry<'blog'>
 
 export interface SEO {
     title?: string;
@@ -50,18 +54,3 @@ export interface SEO {
         meta?: Partial<HTMLAttributes<'meta'>>[];
     };
 };
-
-export interface Frontmatter {
-    slug?: string;
-    title?: string;
-    package?: string;
-    description?: string;
-    date?: string|number|Date;
-    source?: string;
-    demo?: string;
-    tags?: string[];
-    draft?: boolean;
-}
-
-export type Post = MarkdownInstance<Frontmatter>;
-export type PostLayout = MarkdownLayoutProps<Frontmatter>;

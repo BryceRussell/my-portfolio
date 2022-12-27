@@ -7,6 +7,8 @@ const projects = await getCollection('projects');
 ---
 
 <Base>
-    <h1 class="text-center">My Projects</h1>
-    <PostList posts={projects}/>
+    <section class="container">
+        <h1 class="text-center">My Projects</h1>
+        <PostList posts={projects}/>
+    </section>
 </Base>

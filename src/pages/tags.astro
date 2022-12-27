@@ -9,17 +9,17 @@ const articles = await getCollection('blog');
 
 <Base>
     <h1 class="text-center">Tags</h1>
-    <section>
+    <section class="container">
         <h2>Articles</h2>
-        <ol class="flex flex-wrap items-center gap-1">
+        <ol class="tag-list gap-3/2">
             { Object.entries(tagFrequency(articles)).map(([tag, freq]) => {
                 if (tag) return <li class="nowrap"><a href={`/blog/tags/${tag}`}>#{tag} {freq > 1 && `(${freq})`}</a></li>
             })}
         </ol>
     </section>
-    <section>
+    <section class="container">
         <h2>Projects</h2>
-        <ol class="flex flex-wrap items-center gap-1">
+        <ol class="tag-list gap-3/2">
             { Object.entries(tagFrequency(projects)).map(([tag, freq]) => {
                 if (tag) return <li class="nowrap"><a href={`/projects/tags/${tag}`}>#{tag} {freq > 1 && `(${freq})`}</a></li>
             })}

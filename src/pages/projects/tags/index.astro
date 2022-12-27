@@ -8,7 +8,7 @@ const projects = await getCollection('projects');
 ---
 
 <Base>
-    <section class="flex flex-col">
+    <section class="container flex flex-col">
         <h2 class="text-center">Project Tags</h2>
         <ol class="flex flex-wrap gap-1">
             { Object.entries(tagFrequency(projects)).map(([tag, freq]) => {

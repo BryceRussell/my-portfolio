@@ -44,11 +44,12 @@ main > hgroup > p {
     margin: 0;
 }
 
+#_post-header h1 {
+    margin-bottom: 0;
+}
+
 #_post-header .tag-list {
     width: 100%;
-    align-self: flex-end;
-    justify-content: end;
-    padding-bottom: .2em;
 }
 
 .tag-list {

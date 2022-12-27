@@ -30,9 +30,11 @@ const { tag } = Astro.params
 ---
 
 <Base>
-    <hgroup>
-        <h1 class="text-center">Tag</h1>
-        <p class="text-center">#{tag}</p>
-    </hgroup>
-    <PostList posts={articles}/>
+    <section class="container">
+        <hgroup>
+            <h1 class="text-center">Tag</h1>
+            <p class="text-center">#{tag}</p>
+        </hgroup>
+        <PostList posts={articles}/>
+    </section>
 </Base>

@@ -48,14 +48,14 @@ declare module 'astro:content' {
   slug: "default-markdown-frontmatter",
   body: string,
   collection: "blog",
-  data: any
+  data: InferEntrySchema<"blog">
 },
 "test.md": {
   id: "test.md",
   slug: "test",
   body: string,
   collection: "blog",
-  data: any
+  data: InferEntrySchema<"blog">
 },
 },
 "projects": {
@@ -64,46 +64,46 @@ declare module 'astro:content' {
   slug: "1-astro-headless-ui",
   body: string,
   collection: "projects",
-  data: any
+  data: InferEntrySchema<"projects">
 },
 "2-astro-minecraft-theme.md": {
   id: "2-astro-minecraft-theme.md",
   slug: "2-astro-minecraft-theme",
   body: string,
   collection: "projects",
-  data: any
+  data: InferEntrySchema<"projects">
 },
 "3-astro-json-element.md": {
   id: "3-astro-json-element.md",
   slug: "3-astro-json-element",
   body: string,
   collection: "projects",
-  data: any
+  data: InferEntrySchema<"projects">
 },
 "4-astro-default-frontmatter.md": {
   id: "4-astro-default-frontmatter.md",
   slug: "4-astro-default-frontmatter",
   body: string,
   collection: "projects",
-  data: any
+  data: InferEntrySchema<"projects">
 },
 "5-unturned-asset-scraper.md": {
   id: "5-unturned-asset-scraper.md",
   slug: "5-unturned-asset-scraper",
   body: string,
   collection: "projects",
-  data: any
+  data: InferEntrySchema<"projects">
 },
-"6-unturned-tools 2.0.md": {
-  id: "6-unturned-tools 2.0.md",
-  slug: "6-unturned-tools 2.0",
+"6-unturned-tools-2.0.md": {
+  id: "6-unturned-tools-2.0.md",
+  slug: "6-unturned-tools-2.0",
   body: string,
   collection: "projects",
-  data: any
+  data: InferEntrySchema<"projects">
 },
 },
 
 	};
 
-	type ContentConfig = never;
+	type ContentConfig = typeof import("./config");
 }

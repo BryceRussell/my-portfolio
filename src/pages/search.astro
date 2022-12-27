@@ -6,7 +6,7 @@ import Base from "@/layouts/Base.astro";
     <link slot="head" href="/_pagefind/pagefind-ui.css" rel="stylesheet">
     <script is:inline src="/_pagefind/pagefind-ui.js"></script>
     <div id="search"></div>
-    <script is:inline>
+    <script>
         window.addEventListener('DOMContentLoaded', () => {
             new PagefindUI({ 
                 element: "#search",
@@ -30,5 +30,10 @@ import Base from "@/layouts/Base.astro";
         --pagefind-ui-image-border-radius: 0;
         --pagefind-ui-image-box-ratio: 3 / 2;
         --pagefind-ui-font: var(--font);
+    }
+
+    .pagefind-ui__search-input::placeholder {
+        opacity: 1;
+        color: var(--dark);
     }
 </style>

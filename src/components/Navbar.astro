@@ -1,26 +1,27 @@
 ---
 import { Icon } from 'astro-icon';
-import ThemeToggle from '@/components/ThemeToggle.astro';
+import { DarkThemeToggle, IconSwitch } from 'astro-headless-ui';
 ---
 
-<nav class="flex justify-between p-5">
-    <ul class="flex items-center gap-3">
+<nav id="_navbar">
+    <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/projects">Projects</a></li>
         <li><a href="/blog">Blog</a></li>
-        <li><a href="/tags">Tags</a></li>
     </ul>
-    <ul class="flex items-center gap-3 leading-none">
+    <ul>
         <li>
-            <a id="search-link" href="/search" aria-label="search link" class="block w-fluid-3 h-fluid-3 mt-0.5">
-                <Icon name="ic:sharp-search"/>
-            </a>
+            <DarkThemeToggle id="_theme-toggle" class="touch-target">
+                <IconSwitch active="body.dark" size="100%">
+                    <Icon name="carbon:sun" />
+                    <Icon name="carbon:moon" />
+                </IconSwitch>
+            </DarkThemeToggle>
         </li>
         <li>
-            <ThemeToggle class="w-fluid-3 h-fluid-3 ">
-                <Icon name="carbon:sun" />
-                <Icon name="carbon:moon" />
-            </ThemeToggle>
+            <a id="_search-link" class="touch-target" href="/search" aria-label="search link">
+                <Icon name="ic:sharp-search"/>
+            </a>
         </li>
     </ul>
 </nav>

@@ -8,19 +8,20 @@ const articles = await getCollection('blog');
 ---
 
 <Base>
-    <section class="flex flex-col gap-5 my-5">
+    <h1 class="text-center">Tags</h1>
+    <section>
         <h2>Articles</h2>
-        <ol class="flex flex-wrap justify-center sm:justify-start gap-5">
+        <ol class="flex flex-wrap items-center gap-1">
             { Object.entries(tagFrequency(articles)).map(([tag, freq]) => {
-                if (tag) return <li><a href={`/blog/tags/${tag}`}>#{tag} {freq > 1 && `(${freq})`}</a></li>
+                if (tag) return <li class="nowrap"><a href={`/blog/tags/${tag}`}>#{tag} {freq > 1 && `(${freq})`}</a></li>
             })}
         </ol>
     </section>
-    <section class="flex flex-col gap-5">
+    <section>
         <h2>Projects</h2>
-        <ol class="flex flex-wrap justify-center sm:justify-start gap-5">
+        <ol class="flex flex-wrap items-center gap-1">
             { Object.entries(tagFrequency(projects)).map(([tag, freq]) => {
-                if (tag) return <li><a href={`/projects/tags/${tag}`}>#{tag} {freq > 1 && `(${freq})`}</a></li>
+                if (tag) return <li class="nowrap"><a href={`/projects/tags/${tag}`}>#{tag} {freq > 1 && `(${freq})`}</a></li>
             })}
         </ol>
     </section>

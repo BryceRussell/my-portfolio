@@ -1,0 +1,15 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    max-width: clamp(37.38rem, 15.11vw + 33.83rem, 48rem);
+    margin: 0 auto;
+}
+
+main {
+    flex: 1 0 auto;
+    margin: 0;
+    padding: 0 .75em;
+}

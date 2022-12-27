@@ -8,9 +8,9 @@ const projects = await getCollection('projects');
 ---
 
 <Base>
-    <section class="flex flex-col gap-5">
+    <section class="flex flex-col">
         <h2 class="text-center">Project Tags</h2>
-        <ol class="flex flex-wrap justify-center sm:justify-start gap-5">
+        <ol class="flex flex-wrap gap-1">
             { Object.entries(tagFrequency(projects)).map(([tag, freq]) => {
                 if (tag) return <li><a href={`/projects/tags/${tag}`}>#{tag}{freq > 1 && `(${freq})`}</a></li>
             })}

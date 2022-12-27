@@ -31,23 +31,27 @@ const {
     demo,
     tags=[]
 } = post.data
+
+const { Content } = await post.render();
 ---
 
 <Markdown {...post}>
-    <div class="my-5">
-        <ul class="flex gap-1">
-            {tags.map((tag, i) => {
-                return <li><a href={`/blog/tags/${tag}`}>#{tag}</a>{i < tags.length - 1 && ','}</li>
-            })}
-        </ul>
-        <h1 class="my-1 p-0">{title}</h1>
-        <div class="flex items-center gap-3">
-            <span>{(new Date(date)).toDateString()}</span>
-            {source &&<a href={source} title="Source" class="opacity-75 hover:opacity-50"><Icon name="mdi:github" size={24}/></a>}
-            {demo && <a href={demo} title="Demo" class="opacity-75 hover:opacity-50"><Icon name="zondicons:computer-laptop" size={24} /></a>}
+    <header id="_post-header">
+        <h1>{title}</h1>
+        <div class="flex items-start gap-3">
+            <div class="flex items-center gap-1">
+                <time>{(new Date(date)).toDateString()}</time>
+                {source &&<a href={source} title="Source"><Icon name="mdi:github" size={24}/></a>}
+                {demo && <a href={demo} title="Demo"><Icon name="zondicons:computer-laptop" size={24} /></a>}
+            </div>
+            <ul class="tag-list">
+                {tags.map((tag, i) => {
+                    return <li><a href={`/projects/tags/${tag}`}>#{tag}</a>{i < tags.length - 1 && ','}</li>
+                })}
+            </ul>
         </div>
-    </div>
+    </header>
     <section class="markdown">
-        <Fragment set:html={post.render()}/>
+        <Content />
     </section>
 </Markdown>

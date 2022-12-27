@@ -1,24 +1,26 @@
-/* Basic Styles / Markdown Content / Typography */
-
-h1, h2, h3, h4, h5, h6, strong {
+h1, h2, h3, h4, h5, h6 {
+    position: relative;
+    margin: .75em 0;
     font-weight: bold;
     color: var(--darker);
-}
-
-h1 {
-    padding-bottom: .25em;
-    font-size: var(--fluid-7)
+} h1 {
+    font-size: var(--fluid-7);
 } h2 {
-    padding-bottom: .25em;
-    font-size: var(--fluid-6)
+    font-size: var(--fluid-6);
 } h3 {
-    font-size: var(--fluid-5)
+    font-size: var(--fluid-5);
 } h4 {
-    font-size: var(--fluid-4)
+    font-size: var(--fluid-4);
 } h5 {
-    font-size: var(--fluid-3)
+    font-size: var(--fluid-3);
 } h6 {
-    font-size: var(--fluid-2)
+    font-size: var(--fluid-2);
+}
+.markdown h2, h3 {
+    margin-left: .6em;
+} .markdown h2 {
+    padding: 0 0 .25em 0;
+    border-bottom: 2px solid var(--gray);
 }
 
 hr {
@@ -30,15 +32,21 @@ hr {
     background: var(--primary-a);
 }
 
+p {
+    margin: 1em 0;
+}
+
 a {
     text-decoration: none;
     color: var(--primary);
 }
+
 a:hover {
     text-decoration: underline;
     filter: brightness(70%);
-    transition: filter 100ms;
+    transition: filter 100ms, transform 250ms;
 }
+
 a:focus {
     text-decoration: underline;
     outline: none;
@@ -46,6 +54,11 @@ a:focus {
 
 del {
     color: var(--invalid);
+}
+
+strong {
+    font-weight: bold;
+    color: var(--darker);
 }
 
 small, sub, sup, .data-footnote-backref, [aria-describedby="footnote-label"] {
@@ -63,21 +76,26 @@ mark {
 }
 
 blockquote {
+    display: inline-block;
     margin: .5em 0 .5em 2em;
-    padding: .5em 1em;
     border-left: .25rem solid var(--gray);
+} 
+
+blockquote p {
+    margin: 1em;
 }
 
 :not(pre) > code {
-    padding: 2px 4px;
-    vertical-align: text-bottom;
-    border-radius: 3px;
+    vertical-align: middle;
+    padding: 0 .25em;
+    border-radius: 2px;
     background-color: var(--gray);
 }
 
 pre {
     overflow-x: auto;
-    margin: 1em;
+    height: 100%;
+    margin: 1em 0;
     padding: 1em;
     border-radius: 3px;
     background-color: var(--gray);
@@ -111,9 +129,12 @@ tfoot td {
     border-bottom: 0;
 }
 
-/* Media  */
+time {
+    white-space: nowrap;
+    color: var(--grayer);
+}
 
 img {
     max-width: 100%;
-      height: auto;
+    height: auto;
 }

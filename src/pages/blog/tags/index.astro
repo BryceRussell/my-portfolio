@@ -1,15 +1,15 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from "@/layouts/Base.astro";
 import { tagFrequency } from '@/util';
-import type { Frontmatter } from '@/types';
 
-const articles = await Astro.glob<Frontmatter>('/src/blog/*.md');
+const articles = await getCollection('blog')
 ---
 
 <Base>
-    <section class="flex flex-col gap-5">
+    <section class="flex flex-col">
         <h2 class="text-center">Blog Tags</h2>
-        <ol class="flex flex-wrap justify-center sm:justify-start gap-5">
+        <ol class="flex flex-wrap gap-1">
             { Object.entries(tagFrequency(articles)).map(([tag, freq]) => {
                 if (tag) return <li><a href={`/blog/tags/${tag}`}>#{tag}{freq > 1 && `(${freq})`}</a></li>
             })}

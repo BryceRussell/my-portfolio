@@ -1,25 +1,26 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from "@/layouts/Base.astro";
 import PostList from '@/components/PostList.astro';
 import { getTags } from '@/util';
-import type { Post, Frontmatter } from '@/types';
+import type { BlogEntry } from '@/types';
 
 export async function getStaticPaths() {
-    const articles = await Astro.glob<Frontmatter>('/src/blog/*.md');
+    const articles = await getCollection('blog')
     return getTags(articles).map((tag) => {
         return {
             params: {
                 tag
             },
             props: {
-                articles: articles.filter(article => article.frontmatter.tags&&article.frontmatter.tags.includes(tag))
+                articles: articles.filter(article => article.data.tags&&article.data.tags.includes(tag))
             } 
         }
     })
 }
 
 export interface Props {
-    articles?: Post[];
+    articles?: BlogEntry[];
 }
 
 const { articles = [] } = Astro.props
@@ -29,6 +30,9 @@ const { tag } = Astro.params
 ---
 
 <Base>
-    <h1 class="text-center">#{tag}</h1>
+    <hgroup>
+        <h1 class="text-center">Tag</h1>
+        <p class="text-center">#{tag}</p>
+    </hgroup>
     <PostList posts={articles}/>
 </Base>

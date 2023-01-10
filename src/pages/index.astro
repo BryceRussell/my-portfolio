@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from "@/layouts/Base.astro";
 import PostList from "@/components/PostList.astro";
+import { sortDates } from '@/util';
 
 const projects = await getCollection('projects');
 const articles = await getCollection('blog');
@@ -13,11 +14,7 @@ const articles = await getCollection('blog');
         <p>Web Developer</p>
     </hgroup>
     <section class="container">
-        <h2>Projects</h2>
-        <PostList posts={projects} />
-    </section>
-    <section class="container">
         <h2>Recent Posts</h2>
-        <PostList posts={articles} />
+        <PostList posts={sortDates([...articles, ...projects]).slice(0, 10)} />
     </section>
 </Base>

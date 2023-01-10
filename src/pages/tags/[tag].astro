@@ -3,30 +3,35 @@ import { getCollection } from 'astro:content';
 import Base from "@/layouts/Base.astro";
 import PostList from '@/components/PostList.astro';
 import { getTags } from '@/util';
-import type { BlogEntry } from '@/types';
+import type { BlogEntry, ProjectEntry } from '@/types';
 
 export async function getStaticPaths() {
+    const projects = await getCollection('projects');
     const articles = await getCollection('blog')
-    return getTags(articles).map((tag) => {
+    return getTags([...projects, ...articles]).map((tag) => {
         return {
             params: {
                 tag
             },
             props: {
-                articles: articles.filter(article => article.data.tags&&article.data.tags.includes(tag))
+                projects: projects.filter(e => e.data.tags&&e.data.tags.includes(tag)),
+                articles: articles.filter(e => e.data.tags&&e.data.tags.includes(tag))
             } 
         }
     })
 }
 
 export interface Props {
+    projects?: ProjectEntry[];
     articles?: BlogEntry[];
 }
 
-const { articles = [] } = Astro.props
-
 const { tag } = Astro.params
 
+const {
+    projects=[],
+    articles=[]
+} = Astro.props
 ---
 
 <Base>
@@ -35,6 +40,13 @@ const { tag } = Astro.params
             <h1 class="text-center">Tag</h1>
             <p class="text-center">#{tag}</p>
         </hgroup>
-        <PostList posts={articles}/>
+        { !!articles.length &&
+            <h2>Posts</h2>
+            <PostList posts={articles}/>
+        }
+        { !!projects.length && 
+            <h2>Projects</h2>
+            <PostList posts={projects}/>
+        }
     </section>
 </Base>

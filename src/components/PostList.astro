@@ -24,16 +24,7 @@ const {
         return (
             <li>
                 <a href={`/${post.collection}/${slug}`} class="post-link">{(post.collection==="blog"?title:pkg)||slug}</a>
-                <div class="flex gap">
-                    {date && <time>{(new Date(''+date)).toDateString()}</time>}
-                    {tags &&
-                        <ul class="tag-list">                            
-                            {tags.map((tag) => {
-                                return <li><a href={`/${post.collection}/tags/${tag}`}>#{tag}</a></li>
-                            })}
-                        </ul>
-                    }
-                </div>
+                {date && <time>{(new Date(''+date)).toDateString()}</time>}
                 {description && <p>{description}</p>}
             </li>
         )

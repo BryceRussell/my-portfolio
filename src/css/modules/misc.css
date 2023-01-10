@@ -1,4 +1,4 @@
-main > hgroup {
+hgroup {
     display: flex;
     flex-direction: column;
     max-width: fit-content;
@@ -6,12 +6,12 @@ main > hgroup {
     margin: 5em auto;
 }
 
-main > hgroup > h1 {
+hgroup > h1 {
     margin: 0;
     font-size: var(--fluid-9);
 }
 
-main > hgroup > p {
+hgroup > p {
     margin: 0;
     font-size: var(--fluid-6);  
 }

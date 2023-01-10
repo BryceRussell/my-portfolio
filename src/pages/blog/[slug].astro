@@ -41,7 +41,7 @@ const { Content } = await post.render();
         <div class="flex flex-col gap">
             <ul class="tag-list">
                 {tags.map((tag, i) => {
-                    return <li><a href={`/projects/tags/${tag}`}>#{tag}</a>{i < tags.length - 1 && ','}</li>
+                    return <li><a href={`/tags/${tag}`}>#{tag}</a>{i < tags.length - 1 && ','}</li>
                 })}
             </ul>
             <div class="flex items-center gap-1">

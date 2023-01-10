@@ -43,7 +43,6 @@ a {
 
 a:hover {
     text-decoration: underline;
-    filter: brightness(70%);
     transition: filter 100ms, transform 250ms;
 }
 

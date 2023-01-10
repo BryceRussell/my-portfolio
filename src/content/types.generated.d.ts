@@ -37,7 +37,7 @@ declare module 'astro:content' {
 		render(): Promise<{
 			Content: import('astro').MarkdownInstance<{}>['Content'];
 			headings: import('astro').MarkdownHeading[];
-			injectedFrontmatter: Record<string, any>;
+			remarkPluginFrontmatter: Record<string, any>;
 		}>;
 	};
 
@@ -96,7 +96,7 @@ declare module 'astro:content' {
 },
 "6-unturned-tools-2.0.md": {
   id: "6-unturned-tools-2.0.md",
-  slug: "6-unturned-tools-2.0",
+  slug: "6-unturned-tools-20",
   body: string,
   collection: "projects",
   data: InferEntrySchema<"projects">

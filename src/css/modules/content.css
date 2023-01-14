@@ -111,6 +111,7 @@ table {
 
 thead th,
 thead td {
+    white-space: nowrap;
     border-bottom: 3px solid var(--gray);
 }
 

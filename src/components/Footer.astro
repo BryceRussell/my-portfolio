@@ -1,14 +1,15 @@
 ---
 import { Icon } from "astro-icon";
+import { renderMarkdown } from '@astrojs/markdown-remark';
 ---
 
 <footer>
-    <ul class="social-links">
-        <li><a href="https://github.com/BryceRussell"><Icon name="mdi:github"/></a></li>
+    <ul class="social-links icon-list">
+        <li><a href="https://github.com/BryceRussell" title="Check out my github"><Icon name="mdi:github"/></a></li>
         <li><a href="https://stackoverflow.com/users/6909829/bryce-russell"><Icon name="mdi:stack-overflow"/></a></li>
-        <li><a href=""><Icon name="ic:baseline-discord"/></a></li>
+        <li><a href="https://discord.com/users/235888874327375892" title="Add me on discord"><Icon name="ic:baseline-discord"/></a></li>
     </ul>
-    <ul>
+    <ul class="tag-list">
         <li><a href="/">Home</a></li>
         <li><a href="/projects">Projects</a></li>
         <li><a href="/blog">Blog</a></li>

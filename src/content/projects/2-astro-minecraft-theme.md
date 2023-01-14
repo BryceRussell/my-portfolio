@@ -1,4 +1,5 @@
 ---
+draft: true
 slug: 'astro-minecraft-theme'
 title: 'Astro Minecraft Theme'
 description: 'A Minecraft Tailwindcss theme with an example documentation template using Astro'

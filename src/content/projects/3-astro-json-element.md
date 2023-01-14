@@ -1,4 +1,5 @@
 ---
+draft: true
 slug: 'astro-json-element'
 package: 'astro-json-element'
 title: 'Astro JSON Element'

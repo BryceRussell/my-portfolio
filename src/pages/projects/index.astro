@@ -5,10 +5,15 @@ import PostList from "@/components/PostList.astro";
 
 const projects = await getCollection('projects');
 ---
+<active slot="active" >
+    {()=> (
+        
+    )}
+</active>
 
 <Base>
     <section class="container">
-        <h1 class="text-center">My Projects</h1>
+        <h1 class="text-center">Projects</h1>
         <PostList posts={projects}/>
     </section>
 </Base>

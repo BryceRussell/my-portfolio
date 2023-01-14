@@ -50,6 +50,13 @@ declare module 'astro:content' {
   collection: "blog",
   data: InferEntrySchema<"blog">
 },
+"responsive-aspect-ratios.md": {
+  id: "responsive-aspect-ratios.md",
+  slug: "responsive-aspect-ratios",
+  body: string,
+  collection: "blog",
+  data: InferEntrySchema<"blog">
+},
 "test.md": {
   id: "test.md",
   slug: "test",

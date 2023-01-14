@@ -1,4 +1,5 @@
 ---
+draft: true
 slug: 'astro-default-frontmatter'
 title: 'Astro Default Frontmatter'
 description: 'A collection of Remark plugins for Astro that define defaults for markdown frontmatter'

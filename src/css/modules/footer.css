@@ -3,30 +3,17 @@ footer {
     align-items: flex-start;
     justify-content: space-between;
     gap: 3em;
-    margin-top: 3em;
     padding: 1em;
-    font-size: var(--fluid-3);
 }
 
 footer ul {
-    list-style: none;
-    display: flex;
     flex-wrap: wrap;
-    justify-content: end;
+    justify-content: flex-end;
     height: 100%;
-    gap: .5em;
-    margin: 0;
-    padding: 0;
 }
 
 .social-links {
     flex-wrap: nowrap;
     align-self: flex-end;
     justify-content: start;
-}
-
-.social-links svg {
-    height: 1em;
-    width: 1em;
-    font-size: var(--fluid-6);
 }

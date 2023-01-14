@@ -36,20 +36,22 @@ const { Content } = await post.render();
 ---
 
 <Markdown {...post}>
-    <header id="_post-header">
+    <header id="_post-header" class="flex flex-col gap-1/2">
         <h1>{title}</h1>
-        <div class="flex flex-col gap">
+        <div>
+            <time>{(new Date(date)).toDateString()}</time>
+        </div>
+        <nav>
             <ul class="tag-list">
                 {tags.map((tag, i) => {
                     return <li><a href={`/tags/${tag}`}>#{tag}</a>{i < tags.length - 1 && ','}</li>
                 })}
             </ul>
-            <div class="flex items-center gap-1">
-                <time>{(new Date(date)).toDateString()}</time>
-                {source &&<a href={source} title="Source"><Icon name="mdi:github" size={24}/></a>}
-                {demo && <a href={demo} title="Demo"><Icon name="zondicons:computer-laptop" size={24} /></a>}
-            </div>
-        </div>
+            <ul class="icon-list">
+                {demo && <li><a href={demo} title="Demo"><Icon name="zondicons:computer-laptop"/></a></li>}
+                {source && <li><a href={source} title="Source"><Icon name="mdi:github"/></a></li>}
+            </ul>
+        </nav>
     </header>
     <section class="container markdown">
         <Content />

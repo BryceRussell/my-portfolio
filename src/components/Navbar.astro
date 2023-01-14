@@ -9,17 +9,17 @@ import { DarkThemeToggle, IconSwitch } from 'astro-headless-ui';
         <li><a href="/projects">Projects</a></li>
         <li><a href="/blog">Blog</a></li>
     </ul>
-    <ul>
+    <ul class="icon-list">
         <li>
-            <DarkThemeToggle id="_theme-toggle" class="touch-target hover">
-                <IconSwitch active="body.dark" size="100%">
+            <DarkThemeToggle id="_theme-toggle" class="hover" title="Toggle dark theme">
+                <IconSwitch class="icon" active="body.dark" size="">
                     <Icon name="carbon:sun" />
                     <Icon name="carbon:moon" />
                 </IconSwitch>
             </DarkThemeToggle>
         </li>
         <li>
-            <a id="_search-link" class="touch-target" href="/search" aria-label="search link">
+            <a href="/search" id="_search-link" class="icon" aria-label="search link" title="Search">
                 <Icon name="ic:sharp-search"/>
             </a>
         </li>

@@ -22,14 +22,14 @@ export function getAllTags(...posts: Entry[][]): string[] {
 
 export function getTags(...posts: Entry[][]): string[] {
     // Get all tags in an array of posts without duplicates
-    return [...new Set(getAllTags(...posts))]
+    return [...new Set(getAllTags(filterPosts(...posts)))]
 }
 
 export function tagFrequency(...posts: Entry[][]): Record<string, number> {
     // Number of times each tag is used inside an array of posts
     const freqMap: Record<string, number> = {};
     
-    for (const tag of getAllTags(...posts)) {
+    for (const tag of getAllTags(filterPosts(...posts))) {
         freqMap[tag] = (freqMap[tag] || 0) + 1;
     }
 

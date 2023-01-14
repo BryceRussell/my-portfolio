@@ -35,11 +35,11 @@ const {
 ---
 
 <Base>
+    <hgroup>
+        <h1 class="text-center">Tag</h1>
+        <p class="text-center">#{tag}</p>
+    </hgroup>
     <section class="container">
-        <hgroup>
-            <h1 class="text-center">Tag</h1>
-            <p class="text-center">#{tag}</p>
-        </hgroup>
         { !!articles.length &&
             <h2>Posts</h2>
             <PostList posts={articles}/>

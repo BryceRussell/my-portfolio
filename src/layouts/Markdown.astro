@@ -4,7 +4,7 @@ import { Icon } from 'astro-icon'
 import { CodeCopy, IconSwitch } from 'astro-headless-ui';
 import Navbar from "@/components/Navbar.astro";
 import Footer from "@/components/Footer.astro";
-import type { Entry } from '@/types';
+import "@fontsource/roboto";
 import '@/css/markdown.scss'
 
 const {
@@ -12,26 +12,28 @@ const {
 } = Astro.props as any
 
 const {
+	seoTitle,
+	seoDescription,
 	title,
 	description
 } = data
 
-const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const canonical = ''+(new URL(Astro.url.pathname, Astro.site));
 
 const _SEO = {
-	title: title || "Bryce Russell's Web Development Portfolio and Blog",
-	description: description || "Bryce Russell's web development portfolio and blog",
+	title: seoTitle || title || "Bryce Russell's Web Development Portfolio and Blog",
+	description: seoDescription || description || "Bryce Russell's web development portfolio and blog",
 	canonical: canonical,
 	openGraph: {
 		basic: {
-			title: "Bryce Russell's Web Development Website",
+			title: "Bryce Russell",
 			url: canonical,
 			image: "/og.png",
 			type: "website"
 		},
 		optional: {
 			siteName: "Bryce",
-			description: "Bryce Russell's portfolio and blog about web devlopment"
+			description: "My website about web development"
 		},
 		image: {
 			alt: "logo"
@@ -39,6 +41,10 @@ const _SEO = {
 	}
 }
 ---
+
+<Fragment>
+	
+</Fragment>
 
 <html lang="en">
 	<head>

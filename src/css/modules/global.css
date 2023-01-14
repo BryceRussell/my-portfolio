@@ -27,7 +27,7 @@
     --light: #fefefe;
     --lighter: #FFF;
 
-    --font: 'Inter', 'Helvetica', 'sans-serif';
+    --font: 'Roboto', 'Helvetica', 'sans-serif';
 
     --fluid-0: clamp(0.72rem, 0.05vw + 0.71rem, 0.76rem);
     --fluid-1: clamp(0.8rem, 0.11vw + 0.77rem, 0.87rem);

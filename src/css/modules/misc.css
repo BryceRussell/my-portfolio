@@ -44,34 +44,57 @@ hgroup > p {
     margin: 0;
 }
 
-#_post-header h1 {
-    margin-bottom: 0;
+#_post-header {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
 }
 
-#_post-header .tag-list {
-    width: 100%;
+#_post-header h1 {
+    margin: 0;
+}
+
+#_post-header > nav {
+    display: flex;
+    justify-content: space-between;
 }
 
 .tag-list {
-    list-style: none;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: .5em;
-    margin: 0;
-    padding: 0;
+}
+
+.icon-list {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+}
+
+.icon-list a {
+    display: grid;
+    place-items: center;
+}
+
+.icon,
+.icon-list svg {
+    height: var(--fluid-6);
+    width: var(--fluid-6);
 }
 
 .copy-code {
     display: inline-block;
+    aspect-ratio: 1;
     display: grid;
+    padding: 0;
     place-items: center;
-    padding: 1px 0 .1rem 0;
     border-radius: 3px;
-    border: var(--grayer);
-    background-color: var(--gray);
+    border: none;
+    outline: none;
+    background-color: transparent;
     font-size: var(--fluid-1);
-    color: var(--dark);
+    color: #ccc;
 }
 
 h2 > a,
